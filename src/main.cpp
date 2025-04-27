@@ -12,7 +12,6 @@ const int AIR = 0;
 const int GRASS = 1;
 const int DIRT = 2;
 const int STONE = 3;
-
 // Chunk size
 const int CHUNK_WIDTH = 16;
 const int CHUNK_HEIGHT = 16; // 16 until we add caves via 3D noise
@@ -36,6 +35,7 @@ public:
         initialZ = z * 16;
         finalX = x * 16 + 15;
         finalZ = z * 16 + 15;
+        
     }
 
     void genChunk() {
@@ -54,19 +54,7 @@ public:
                 for (int y = -CHUNK_HEIGHT; y <= height; y++) {
                     glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(x, y, z));
                     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-
-                    if (y == height) {
-                        shader->setInt("blockType", GRASS); // 1 = grass block
-
-                    } else if (y < height && y >= height - 3) {
-                        shader->setInt("blockType", DIRT); // 2 = dirt block
-                        
-                    } else if (y < height - 3) {
-                        shader->setInt("blockType", STONE); // 3 = stone block
-                    }
-
                     glDrawArrays(GL_TRIANGLES, 0, 36);
-
                 }
             }
         }
@@ -212,81 +200,90 @@ void initTexture() {
 }
 
 void initCube() {
+    // Texture is 128x128 with 16x16 blocks (8 blocks per row/column)
+    const float BLOCK_SIZE = 1.0f / 8.0f;  // 128px texture / 16px blocks = 8 divisions
+
+    curTexLocation = glGetUniformLocation(shaderProgramId, "curTexture");
+
+    const float topX = 1 * BLOCK_SIZE;
+    const float topY = 7 * BLOCK_SIZE;
+
+    const float sideX = 0 * BLOCK_SIZE;
+    const float sideY = 7 * BLOCK_SIZE;
+
+    const float bottomX = 2 * BLOCK_SIZE;
+    const float bottomY = 7 * BLOCK_SIZE;
+
+
     float vertices[] = {
-        // Positions          FaceID  U     V
-        // Top Face (faceId = 0)
-        -0.5f, 0.5f, -0.5f,   0,     0.0f, 0.0f,
-        0.5f, 0.5f, -0.5f,    0,     1.0f, 0.0f,
-        0.5f, 0.5f, 0.5f,     0,     1.0f, 1.0f,
-        -0.5f, 0.5f, -0.5f,   0,     0.0f, 0.0f,
-        0.5f, 0.5f, 0.5f,     0,     1.0f, 1.0f,
-        -0.5f, 0.5f, 0.5f,    0,     0.0f, 1.0f,
+        // top (grass top)
+        -0.5f,  0.5f, -0.5f,  topX,              topY + BLOCK_SIZE,
+        0.5f,  0.5f,  0.5f,  topX + BLOCK_SIZE, topY,
+        0.5f,  0.5f, -0.5f,  topX + BLOCK_SIZE, topY + BLOCK_SIZE,
+        0.5f,  0.5f,  0.5f,  topX + BLOCK_SIZE, topY,
+        -0.5f,  0.5f, -0.5f,  topX,              topY + BLOCK_SIZE,
+        -0.5f,  0.5f,  0.5f,  topX,              topY,
 
-        // Bottom Face (faceId = 1)
-        -0.5f, -0.5f, -0.5f,  1,     0.0f, 0.0f,
-        0.5f, -0.5f, -0.5f,   1,     1.0f, 0.0f,
-        0.5f, -0.5f, 0.5f,    1,     1.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f,  1,     0.0f, 0.0f,
-        0.5f, -0.5f, 0.5f,    1,     1.0f, 1.0f,
-        -0.5f, -0.5f, 0.5f,   1,     0.0f, 1.0f,
+        // bottom (grass bottom)
+        -0.5f, -0.5f, -0.5f,  bottomX,              bottomY + BLOCK_SIZE,
+        0.5f, -0.5f, -0.5f,  bottomX + BLOCK_SIZE, bottomY + BLOCK_SIZE,
+        0.5f, -0.5f,  0.5f,  bottomX + BLOCK_SIZE, bottomY,
+        0.5f, -0.5f,  0.5f,  bottomX + BLOCK_SIZE, bottomY,
+        -0.5f, -0.5f,  0.5f,  bottomX,              bottomY,
+        -0.5f, -0.5f, -0.5f,  bottomX,              bottomY + BLOCK_SIZE,
 
-        // All side faces (faceId = 2)
-        // Front Face
-        -0.5f, -0.5f, 0.5f,   2,     0.0f, 0.0f,
-        0.5f, -0.5f, 0.5f,     2,     1.0f, 0.0f,
-        0.5f, 0.5f, 0.5f,      2,     1.0f, 1.0f,
-        -0.5f, -0.5f, 0.5f,    2,     0.0f, 0.0f,
-        0.5f, 0.5f, 0.5f,      2,     1.0f, 1.0f,
-        -0.5f, 0.5f, 0.5f,     2,     0.0f, 1.0f,
+        // front (grass side)
+        -0.5f, -0.5f,  0.5f,  sideX,              sideY,
+        0.5f, -0.5f,  0.5f,  sideX + BLOCK_SIZE, sideY,
+        0.5f,  0.5f,  0.5f,  sideX + BLOCK_SIZE, sideY + BLOCK_SIZE,
+        0.5f,  0.5f,  0.5f,  sideX + BLOCK_SIZE, sideY + BLOCK_SIZE,
+        -0.5f,  0.5f,  0.5f,  sideX,              sideY + BLOCK_SIZE,
+        -0.5f, -0.5f,  0.5f,  sideX,              sideY,
 
-        // Back Face
-        -0.5f, -0.5f, -0.5f,  2,     0.0f, 0.0f,
-        0.5f, -0.5f, -0.5f,   2,     1.0f, 0.0f,
-        0.5f, 0.5f, -0.5f,     2,     1.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f,   2,     0.0f, 0.0f,
-        0.5f, 0.5f, -0.5f,     2,     1.0f, 1.0f,
-        -0.5f, 0.5f, -0.5f,    2,     0.0f, 1.0f,
+        // back (grass side)
+        0.5f, -0.5f, -0.5f,  sideX,              sideY,
+        -0.5f, -0.5f, -0.5f,  sideX + BLOCK_SIZE, sideY,
+        -0.5f,  0.5f, -0.5f,  sideX + BLOCK_SIZE, sideY + BLOCK_SIZE,
+        -0.5f,  0.5f, -0.5f,  sideX + BLOCK_SIZE, sideY + BLOCK_SIZE,
+        0.5f,  0.5f, -0.5f,  sideX,              sideY + BLOCK_SIZE,
+        0.5f, -0.5f, -0.5f,  sideX,              sideY,
 
-        // Left Face
-        -0.5f, -0.5f, -0.5f,  2,     0.0f, 0.0f,
-        -0.5f, -0.5f, 0.5f,   2,     1.0f, 0.0f,
-        -0.5f, 0.5f, 0.5f,    2,     1.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f,  2,     0.0f, 0.0f,
-        -0.5f, 0.5f, 0.5f,    2,     1.0f, 1.0f,
-        -0.5f, 0.5f, -0.5f,   2,     0.0f, 1.0f,
+        // left (grass side)
+        -0.5f, -0.5f, -0.5f,  sideX,              sideY,
+        -0.5f, -0.5f,  0.5f,  sideX + BLOCK_SIZE, sideY,
+        -0.5f,  0.5f,  0.5f,  sideX + BLOCK_SIZE, sideY + BLOCK_SIZE,
+        -0.5f,  0.5f,  0.5f,  sideX + BLOCK_SIZE, sideY + BLOCK_SIZE,
+        -0.5f,  0.5f, -0.5f,  sideX,              sideY + BLOCK_SIZE,
+        -0.5f, -0.5f, -0.5f,  sideX,              sideY,
 
-        // Right Face
-        0.5f, -0.5f, -0.5f,   2,     0.0f, 0.0f,
-        0.5f, -0.5f, 0.5f,    2,     1.0f, 0.0f,
-        0.5f, 0.5f, 0.5f,     2,     1.0f, 1.0f,
-        0.5f, -0.5f, -0.5f,   2,     0.0f, 0.0f,
-        0.5f, 0.5f, 0.5f,     2,     1.0f, 1.0f,
-        0.5f, 0.5f, -0.5f,    2,     0.0f, 1.0f
+        // right (grass side)
+        0.5f, -0.5f,  0.5f,  sideX,              sideY,
+        0.5f, -0.5f, -0.5f,  sideX + BLOCK_SIZE, sideY,
+        0.5f,  0.5f, -0.5f,  sideX + BLOCK_SIZE, sideY + BLOCK_SIZE,
+        0.5f,  0.5f, -0.5f,  sideX + BLOCK_SIZE, sideY + BLOCK_SIZE,
+        0.5f,  0.5f,  0.5f,  sideX,              sideY + BLOCK_SIZE,
+        0.5f, -0.5f,  0.5f,  sideX,              sideY
     };
 
-    // Rest of the initCube() function remains the same...
     glGenBuffers(1, &squareVBO);
     glGenVertexArrays(1, &squareVAO);
 
     glBindVertexArray(squareVAO);
+    
     glBindBuffer(GL_ARRAY_BUFFER, squareVBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
     
     // Position attribute
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-
-    // Face ID attribute
-    glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+        
+    // Texture coord attribute
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 
-    // UV attribute
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(4 * sizeof(float)));
-    glEnableVertexAttribArray(2);
-
     glBindVertexArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
-
 
 // send matrix to vertex shader
 void initMatrixLocations() {
