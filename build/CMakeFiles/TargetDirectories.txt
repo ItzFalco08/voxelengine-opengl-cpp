@@ -1,0 +1,3 @@
+/home/falcoxd/learngl/build/CMakeFiles/main.dir
+/home/falcoxd/learngl/build/CMakeFiles/edit_cache.dir
+/home/falcoxd/learngl/build/CMakeFiles/rebuild_cache.dir
