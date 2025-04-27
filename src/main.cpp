@@ -28,6 +28,17 @@ public:
 
     float scale = 0.1f;
     int maxHeight = 10;
+
+    int blocks[CHUNK_WIDTH][CHUNK_HEIGHT][CHUNK_WIDTH];
+
+    enum FaceDirection {
+        TOP,
+        BOTTOM,
+        FRONT,
+        BACK,
+        LEFT,
+        RIGHT,
+    };
     
     Chunk(int x, int z) {
         // generate form (16x, 16z) to (16x + 15, 16z + 15)     
@@ -35,7 +46,6 @@ public:
         initialZ = z * 16;
         finalX = x * 16 + 15;
         finalZ = z * 16 + 15;
-        
     }
 
     void genChunk() {
@@ -51,15 +61,61 @@ public:
                 int height = (int) (normalized * maxHeight); // 0 -> maxHeight(10)
                 
                 // render block upto x, height, z 
-                for (int y = -CHUNK_HEIGHT; y <= height; y++) {
-                    glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(x, y, z));
-                    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-                    glDrawArrays(GL_TRIANGLES, 0, 36);
+                for (int y = 0; y < maxHeight; y++) {
+                    if(y <= height) {
+                        blocks[x - initialX][y][z - initialZ] = GRASS;
+                    } else {
+                        blocks[x - initialX][y][z - initialZ] = AIR;
+                    }
+                }
+            }
+        }
+    }
+
+    bool isAir(int x, int y, int z) {
+        // first cheack if x,y,z is valid 
+        if ( x < 0 || x >= CHUNK_WIDTH || z < 0 || z >= CHUNK_WIDTH || y < 0 || y > CHUNK_HEIGHT) {
+            return true;
+        } 
+        // if the block inside chunk, cheack if its assigned as air or not
+        if (blocks[x][y][z] == AIR) {
+            return true;
+        }
+
+        return false;
+    }
+
+    void drawFace(FaceDirection dir) {
+        int startVertex = 6 * dir;
+
+        glDrawArrays(GL_TRIANGLES, startVertex, 6);
+    }
+
+    void renderChunk() {
+        for(int x = 0; x < CHUNK_WIDTH; x++) {
+            for (int z = 0; z < CHUNK_WIDTH; z++) {
+                for(int y = 0; y < maxHeight; y++) {
+
+                    if(blocks[x][y][z] != AIR) {
+                        glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(initialX + x, y, initialZ + z));
+                        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+                        // Check neighbors:
+                        if (isAir(x + 1, y, z)) drawFace(RIGHT);
+                        if (isAir(x - 1, y, z)) drawFace(LEFT);
+                        if (isAir(x, y + 1, z)) drawFace(TOP);
+                        if (isAir(x, y - 1, z)) drawFace(BOTTOM);
+                        if (isAir(x, y, z + 1)) drawFace(FRONT);
+                        if (isAir(x, y, z - 1)) drawFace(BACK);
+                    }
+
                 }
             }
         }
     }
 };
+
+Chunk* chunk;
 
 void initialization(GLFWwindow* window) {
     
@@ -94,6 +150,9 @@ void initialization(GLFWwindow* window) {
     shader->setInt("curTexture", 0); 
 
     glBindVertexArray(squareVAO);
+
+    chunk = new Chunk(0, 0);
+    chunk->genChunk();
 
 }
 
@@ -354,6 +413,5 @@ void display() {
     calcDeltaTime();
     setMatrix();
 
-    Chunk chunk(0, 0);
-    chunk.genChunk();
+    chunk->renderChunk();
 }
