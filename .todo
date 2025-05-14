@@ -1,15 +1,14 @@
 // v1.0
-TODO: finish Chunk class with blocks 3D array
 TODO: add player render distance with infinite chunk generation
 TODO: add block break and place
 TOOO: add more blocks to break and place
-TODO: add trees using noise
 
 // v1.1
+TODO: add trees using noise
+TODO: ADD SETTINGS
 TODO: add grass using noise
 TODO: ADD WATER
 TODO: ADD WATER ANIMATIONS
 TODO: ADD ORES
 TODO: ADD CAVES
 TODO: MAKE PLAY SCREEN
-TODO: ADD SETTINGS AND SOUNDS

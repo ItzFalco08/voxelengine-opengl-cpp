@@ -1,25 +1,50 @@
 #include "main.hpp"
+#include <map>
+#include <vector>
+bool playBgm() {
+    if (SDL_Init(SDL_INIT_AUDIO) < 0) {
+        printf("SDL_Init AUDIO failed: %s\n", SDL_GetError());
+        return false;
+    }
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+        printf("Mix_OpenAudio failed: %s\n", Mix_GetError());
+        return false;
+    }
 
-glm::mat4 view;
-glm::mat4 projection;
+    // Figure out absolute path at runtime
+    char* basePath = SDL_GetBasePath(); // e.g. "/home/user/mygame/bin/"
+    std::string musicPath = std::string(basePath) + "../src/sounds/bgm.mp3";
+    SDL_free(basePath);
 
-int modelLoc;
-int viewLoc;
-int projectionLoc;
+    bgm = Mix_LoadMUS(musicPath.c_str());
+    if (!bgm) {
+        printf("Mix_LoadMUS failed at '%s': %s\n", musicPath.c_str(), Mix_GetError());
+        return false;
+    }
+
+    // Start the music (loop forever)
+    Mix_PlayMusic(bgm, -1);
+    return true;
+}
 
 // Defining constants for block types
-const int AIR = 0;
-const int GRASS = 1;
-const int DIRT = 2;
-const int STONE = 3;
-// Chunk size
-const int CHUNK_WIDTH = 16;
-const int CHUNK_HEIGHT = 16; // 16 until we add caves via 3D noise
+enum BlockType {
+    AIR, // 0
+    GRASS, // 1
+    DIRT, // 2
+    STONE, // 3
+    BEDROCK // 4
+};
 
 Shader* shader;
 
+// Chunk size
+const int CHUNK_WIDTH = 16;
+const int CHUNK_HEIGHT = 16; // 16 until we add caves via 3D noise
+int renderDistance = 2;
+
 // Chunk Class
-class Chunk{
+class Chunk {
 public:
     int initialX;
     int initialZ;
@@ -31,6 +56,10 @@ public:
 
     int blocks[CHUNK_WIDTH][CHUNK_HEIGHT][CHUNK_WIDTH];
 
+    std::vector <float> vertices;
+
+    unsigned int VAO, VBO;
+
     enum FaceDirection {
         TOP,
         BOTTOM,
@@ -39,6 +68,11 @@ public:
         LEFT,
         RIGHT,
     };
+
+    ~Chunk() {
+        glDeleteBuffers(1, &VBO);
+        glDeleteVertexArrays(1, &VBO);
+    }
     
     Chunk(int x, int z) {
         // generate form (16x, 16z) to (16x + 15, 16z + 15)     
@@ -46,6 +80,38 @@ public:
         initialZ = z * 16;
         finalX = x * 16 + 15;
         finalZ = z * 16 + 15;
+
+        genChunk();
+        buildMesh();
+
+        glGenVertexArrays(1, &VAO);
+        glGenBuffers(1, &VBO);
+
+        glBindVertexArray(VAO);
+        glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
+        // buffer data
+        glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), vertices.data(), GL_STATIC_DRAW);
+
+        // vao attibutes
+
+        // position
+        glEnableVertexAttribArray(0);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*) 0);
+ 
+        // uv
+        glEnableVertexAttribArray(1);
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*) (3 * sizeof(float)));
+
+        // face
+        glEnableVertexAttribArray(2);
+        glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*) (5 * sizeof(float)));
+
+        // blocktype
+        glEnableVertexAttribArray(3);
+        glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*) (6 * sizeof(float)));
+
+        glBindVertexArray(0);
     }
 
     void genChunk() {
@@ -61,11 +127,23 @@ public:
                 int height = (int) (normalized * maxHeight); // 0 -> maxHeight(10)
                 
                 // render block upto x, height, z 
-                for (int y = 0; y < maxHeight; y++) {
-                    if(y <= height) {
+                for (int y = 0; y < CHUNK_HEIGHT; y++) {
+                    int terrainY = height + (CHUNK_HEIGHT - maxHeight);
+
+                    if(y == terrainY) {
                         blocks[x - initialX][y][z - initialZ] = GRASS;
-                    } else {
-                        blocks[x - initialX][y][z - initialZ] = AIR;
+                    }
+                    else if ( y < terrainY && y >= terrainY - 3) {
+                        blocks[x - initialX][y][z - initialZ] = DIRT;
+                    }
+                    else if ( y < terrainY - 3 && y > 0) {
+                        blocks[x - initialX][y][z - initialZ] = STONE;
+                    } 
+                    else if (y == 0) {
+                        blocks[x - initialX][y][z - initialZ] = BEDROCK;
+                    }
+                    else {
+                       blocks[x - initialX][y][z - initialZ] = AIR;
                     }
                 }
             }
@@ -74,7 +152,7 @@ public:
 
     bool isAir(int x, int y, int z) {
         // first cheack if x,y,z is valid 
-        if ( x < 0 || x >= CHUNK_WIDTH || z < 0 || z >= CHUNK_WIDTH || y < 0 || y > CHUNK_HEIGHT) {
+        if ( x < 0 || x >= CHUNK_WIDTH || z < 0 || z >= CHUNK_WIDTH || y < 0 || y >= CHUNK_HEIGHT) {
             return true;
         } 
         // if the block inside chunk, cheack if its assigned as air or not
@@ -85,45 +163,142 @@ public:
         return false;
     }
 
-    void drawFace(FaceDirection dir) {
-        int startVertex = 6 * dir;
+    void addFace(FaceDirection face, int x, int y, int z, int type) {
+        // add vace vertex to verticies vector
 
-        glDrawArrays(GL_TRIANGLES, startVertex, 6);
+        // x, y, z, u, v, face, type
+        float localPos[6][6][3] = {
+            { {1.0f, 1.0f, 0.0f}, {0.0f, 1.0f, 0.0f}, {0.0f, 1.0f, 1.0f}, {0.0f, 1.0f, 1.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 1.0f, 0.0f} }, // TOP
+            { {1.0f, 0.0f, 0.0f}, {1.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 0.0f}, {1.0f, 0.0f, 0.0f} }, // BOTTOM
+            { {1.0f, 1.0f, 1.0f}, {0.0f, 1.0f, 1.0f}, {0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 1.0f}, {1.0f, 0.0f, 1.0f}, {1.0f, 1.0f, 1.0f} }, // FRONT
+            { {0.0f, 1.0f, 0.0f}, {1.0f, 1.0f, 0.0f}, {1.0f, 0.0f, 0.0f}, {1.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {0.0f, 1.0f, 0.0f} }, // BACK
+            { {0.0f, 1.0f, 1.0f}, {0.0f, 1.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 1.0f}, {0.0f, 1.0f, 1.0f} }, // LEFT
+            { {1.0f, 1.0f, 0.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 0.0f, 1.0f}, {1.0f, 0.0f, 1.0f}, {1.0f, 0.0f, 0.0f}, {1.0f, 1.0f, 0.0f} }  // RIGHT
+        };
+
+        // for vertex in each face
+        float localUv[6][2] = {
+            {1.0f, 1.0f},
+            {0.0f, 1.0f},
+            {0.0f, 0.0f},
+            {0.0f, 0.0f},
+            {1.0f, 0.0f},
+            {1.0f, 1.0f}
+        };
+
+        for (int vertex = 0; vertex < 6; vertex++) {
+            float* pos = localPos[face][vertex];
+            float* uv = localUv[vertex];
+
+            vertices.push_back(pos[0] + x);
+            vertices.push_back(pos[1] + y);
+            vertices.push_back(pos[2] + z);
+
+            vertices.push_back(uv[0]);
+            vertices.push_back(uv[1]);
+
+            vertices.push_back(static_cast<float>(face));
+            vertices.push_back(static_cast<float>(type));
+        }
     }
 
-    void renderChunk() {
+    void buildMesh() {
+        vertices.clear();
         for(int x = 0; x < CHUNK_WIDTH; x++) {
-            for (int z = 0; z < CHUNK_WIDTH; z++) {
-                for(int y = 0; y < maxHeight; y++) {
+            for(int y = 0; y < CHUNK_HEIGHT; y++) {
+                for(int z = 0; z < CHUNK_WIDTH; z++) {
+                    int type = blocks[x][y][z];
+                    if(type == AIR) continue;
 
-                    if(blocks[x][y][z] != AIR) {
-                        glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(initialX + x, y, initialZ + z));
-                        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-
-                        // Check neighbors:
-                        if (isAir(x + 1, y, z)) drawFace(RIGHT);
-                        if (isAir(x - 1, y, z)) drawFace(LEFT);
-                        if (isAir(x, y + 1, z)) drawFace(TOP);
-                        if (isAir(x, y - 1, z)) drawFace(BOTTOM);
-                        if (isAir(x, y, z + 1)) drawFace(FRONT);
-                        if (isAir(x, y, z - 1)) drawFace(BACK);
-                    }
-
+                    // add each exposed face
+                    if (isAir(x, y + 1, z)) addFace(TOP, x + initialX, y, z + initialZ, type); // add top face
+                    if (isAir(x, y - 1, z)) addFace(BOTTOM, x + initialX, y, z + initialZ, type); // add bottom face
+                    if (isAir(x + 1, y, z)) addFace(RIGHT, x + initialX, y, z + initialZ, type); // add right face
+                    if (isAir(x - 1, y, z)) addFace(LEFT, x + initialX, y, z + initialZ, type); // add left face
+                    if (isAir(x, y, z + 1)) addFace(FRONT, x + initialX, y, z + initialZ, type); // add front face
+                    if (isAir(x, y, z - 1)) addFace(BACK, x + initialX, y, z + initialZ, type); // add back face
                 }
             }
         }
     }
+
+    void renderChunk() {
+        // render all vertex from vertices
+        glBindVertexArray(VAO);
+        glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 7);
+    }
 };
 
-Chunk* chunk;
+std::map<std::pair<int, int>, Chunk> chunks;
+
+void initChunks() {
+    int fromX = -renderDistance;
+    int fromZ = -renderDistance;
+    int toX = renderDistance;
+    int toZ = renderDistance;
+
+    for (int x = fromX; x <= toX; x++) {
+        for (int z = fromZ; z <= toZ; z++) {
+            chunks.emplace(std::make_pair(x, z), Chunk(x, z));
+        }
+    }
+
+}
+
+void renderChunks() {
+    // render chunks map
+    for(auto itr = chunks.begin(); itr != chunks.end(); itr++) {
+        itr->second.renderChunk();
+    }
+}
+
+
+// nuklear context
+struct nk_context *ctx;
+
+int initNuklear(GLFWwindow* window){
+    ctx = nk_glfw3_init(window, NK_GLFW3_INSTALL_CALLBACKS);
+    if (!ctx) {
+        std::cerr << "Failed to initialize Nuklear context" << std::endl;
+        glfwDestroyWindow(window);
+        glfwTerminate();
+        return -1;
+    }
+
+    struct nk_font_atlas *atlas;
+    nk_glfw3_font_stash_begin(&atlas);
+    if (!atlas) {
+        std::cerr << "Failed to begin font stash" << std::endl;
+        nk_glfw3_shutdown();
+        glfwDestroyWindow(window);
+        glfwTerminate();
+        return -1;
+    }
+    nk_glfw3_font_stash_end();
+    return 0;
+}
+
+void drawDebugMenu() {
+    int nuklear_window = nk_begin(ctx, "Debug Menu", nk_rect(10,10, 220, 200), NK_WINDOW_BORDER | NK_WINDOW_TITLE | NK_WINDOW_MINIMIZABLE);
+
+    if (nuklear_window) {
+        nk_layout_row_dynamic(ctx, 30, 1);
+
+        nk_label(ctx, "Camera Position:", NK_TEXT_LEFT);
+        char buffer[64];
+        snprintf(buffer, sizeof(buffer), "X: %.2f Y: %.2f Z: %.2f", camPos.x, camPos.y, camPos.z);
+        nk_label(ctx, buffer, NK_TEXT_LEFT);
+
+        nk_label(ctx, "player Chunk Pos:", NK_TEXT_LEFT);
+        snprintf(buffer, sizeof(buffer), "X: %.2f Z: %.2f", playerChunkPos.x, playerChunkPos.y);
+        nk_label(ctx, buffer, NK_TEXT_LEFT);
+    }
+
+    nk_end(ctx);
+}
 
 void initialization(GLFWwindow* window) {
-    
-    // initialize shader
-    shaderProgramId = shader->programId;
     shader->use();
-
-    initCube();
 
     // load textures
     initTexture();
@@ -143,17 +318,17 @@ void initialization(GLFWwindow* window) {
 
     glfwSetCursorPosCallback(window, mouse_callback); 
 
-
     // set the texture to fragment shader
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, textureId1);
-    shader->setInt("curTexture", 0); 
+    shader->setInt("curTexture", 0);
+    glBindVertexArray(cubeVAO);
 
-    glBindVertexArray(squareVAO);
+    // set blocktype to grass (by default)
 
-    chunk = new Chunk(0, 0);
-    chunk->genChunk();
-
+    playBgm();
+    initNuklear(window);
+    initChunks();
 }
 
 int main() {
@@ -193,6 +368,8 @@ int main() {
         glfwSwapBuffers(window);
     }
 
+    nk_glfw3_shutdown();
+    glfwDestroyWindow(window);
     glfwTerminate();
     return 0;
 }
@@ -258,97 +435,11 @@ void initTexture() {
     }
 }
 
-void initCube() {
-    // Texture is 128x128 with 16x16 blocks (8 blocks per row/column)
-    const float BLOCK_SIZE = 1.0f / 8.0f;  // 128px texture / 16px blocks = 8 divisions
-
-    curTexLocation = glGetUniformLocation(shaderProgramId, "curTexture");
-
-    const float topX = 1 * BLOCK_SIZE;
-    const float topY = 7 * BLOCK_SIZE;
-
-    const float sideX = 0 * BLOCK_SIZE;
-    const float sideY = 7 * BLOCK_SIZE;
-
-    const float bottomX = 2 * BLOCK_SIZE;
-    const float bottomY = 7 * BLOCK_SIZE;
-
-
-    float vertices[] = {
-        // top (grass top)
-        -0.5f,  0.5f, -0.5f,  topX,              topY + BLOCK_SIZE,
-        0.5f,  0.5f,  0.5f,  topX + BLOCK_SIZE, topY,
-        0.5f,  0.5f, -0.5f,  topX + BLOCK_SIZE, topY + BLOCK_SIZE,
-        0.5f,  0.5f,  0.5f,  topX + BLOCK_SIZE, topY,
-        -0.5f,  0.5f, -0.5f,  topX,              topY + BLOCK_SIZE,
-        -0.5f,  0.5f,  0.5f,  topX,              topY,
-
-        // bottom (grass bottom)
-        -0.5f, -0.5f, -0.5f,  bottomX,              bottomY + BLOCK_SIZE,
-        0.5f, -0.5f, -0.5f,  bottomX + BLOCK_SIZE, bottomY + BLOCK_SIZE,
-        0.5f, -0.5f,  0.5f,  bottomX + BLOCK_SIZE, bottomY,
-        0.5f, -0.5f,  0.5f,  bottomX + BLOCK_SIZE, bottomY,
-        -0.5f, -0.5f,  0.5f,  bottomX,              bottomY,
-        -0.5f, -0.5f, -0.5f,  bottomX,              bottomY + BLOCK_SIZE,
-
-        // front (grass side)
-        -0.5f, -0.5f,  0.5f,  sideX,              sideY,
-        0.5f, -0.5f,  0.5f,  sideX + BLOCK_SIZE, sideY,
-        0.5f,  0.5f,  0.5f,  sideX + BLOCK_SIZE, sideY + BLOCK_SIZE,
-        0.5f,  0.5f,  0.5f,  sideX + BLOCK_SIZE, sideY + BLOCK_SIZE,
-        -0.5f,  0.5f,  0.5f,  sideX,              sideY + BLOCK_SIZE,
-        -0.5f, -0.5f,  0.5f,  sideX,              sideY,
-
-        // back (grass side)
-        0.5f, -0.5f, -0.5f,  sideX,              sideY,
-        -0.5f, -0.5f, -0.5f,  sideX + BLOCK_SIZE, sideY,
-        -0.5f,  0.5f, -0.5f,  sideX + BLOCK_SIZE, sideY + BLOCK_SIZE,
-        -0.5f,  0.5f, -0.5f,  sideX + BLOCK_SIZE, sideY + BLOCK_SIZE,
-        0.5f,  0.5f, -0.5f,  sideX,              sideY + BLOCK_SIZE,
-        0.5f, -0.5f, -0.5f,  sideX,              sideY,
-
-        // left (grass side)
-        -0.5f, -0.5f, -0.5f,  sideX,              sideY,
-        -0.5f, -0.5f,  0.5f,  sideX + BLOCK_SIZE, sideY,
-        -0.5f,  0.5f,  0.5f,  sideX + BLOCK_SIZE, sideY + BLOCK_SIZE,
-        -0.5f,  0.5f,  0.5f,  sideX + BLOCK_SIZE, sideY + BLOCK_SIZE,
-        -0.5f,  0.5f, -0.5f,  sideX,              sideY + BLOCK_SIZE,
-        -0.5f, -0.5f, -0.5f,  sideX,              sideY,
-
-        // right (grass side)
-        0.5f, -0.5f,  0.5f,  sideX,              sideY,
-        0.5f, -0.5f, -0.5f,  sideX + BLOCK_SIZE, sideY,
-        0.5f,  0.5f, -0.5f,  sideX + BLOCK_SIZE, sideY + BLOCK_SIZE,
-        0.5f,  0.5f, -0.5f,  sideX + BLOCK_SIZE, sideY + BLOCK_SIZE,
-        0.5f,  0.5f,  0.5f,  sideX,              sideY + BLOCK_SIZE,
-        0.5f, -0.5f,  0.5f,  sideX,              sideY
-    };
-
-    glGenBuffers(1, &squareVBO);
-    glGenVertexArrays(1, &squareVAO);
-
-    glBindVertexArray(squareVAO);
-    
-    glBindBuffer(GL_ARRAY_BUFFER, squareVBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-    
-    // Position attribute
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-        
-    // Texture coord attribute
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
-
-    glBindVertexArray(0);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-}
-
 // send matrix to vertex shader
 void initMatrixLocations() {
-    modelLoc = glGetUniformLocation(shaderProgramId, "model");
-    viewLoc = glGetUniformLocation(shaderProgramId, "view");
-    projectionLoc = glGetUniformLocation(shaderProgramId, "projection");
+    modelLoc = glGetUniformLocation(shader->programId, "model");
+    viewLoc = glGetUniformLocation(shader->programId, "view");
+    projectionLoc = glGetUniformLocation(shader->programId, "projection");
 }
 
 void setMatrix() {
@@ -375,6 +466,8 @@ void calcDeltaTime() {
 double yawAngle;
 double pitchAngle;
 bool firstMouse = true;
+
+// playercirduates -> translate value of view matrix
 
 void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
     if(firstMouse) {
@@ -408,10 +501,80 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
 
 };
 
+void handleChunks() {
+    int fromX = playerChunkPos.x - renderDistance;
+    int fromZ = playerChunkPos.y - renderDistance;
+    int toX = playerChunkPos.x + renderDistance;
+    int toZ = playerChunkPos.y + renderDistance;
+
+    // 1. loop through range to load chunks
+    for (int x = fromX; x <= toX; x++) {
+        for (int z = fromZ; z <= toZ; z++) {
+            std::pair<int, int> pos = {x, z};
+
+            if (chunks.find(pos) == chunks.end()) {
+                // it do not exists
+                chunks.emplace(std::make_pair(x, z), Chunk(x, z));
+            }
+        }
+    }
+
+    // 2. loop through map to unload chunks
+    for(auto it = chunks.begin(); it != chunks.end(); ) {
+        int x = it->first.first;
+        int z = it->first.second;
+
+        if(x < fromX || x > toX || z < fromZ || z > toZ) {
+            auto nextIt = std::next(it);
+            chunks.erase(it); // it makes it null so it++ dont works
+            it = nextIt;
+        } else {
+            it++;
+        }
+    }
+}
+
+void updatePlayerChunkPos() {
+    glm::vec2 newPos = glm::floor(glm::vec2(camPos.x, camPos.z) / 16.0f);
+
+    if(playerChunkPos == newPos) {
+        return;
+
+    } else {
+        // user entered new chunk
+        playerChunkPos = newPos;
+        // recalculate chunks map
+        handleChunks();
+    }
+}
+
+void restoreState() {
+   // Restore critical OpenGL state
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+    glBindVertexArray(cubeVAO);
+    shader->use();
+    glm::mat4 model = glm::mat4(1.0f);  // identity
+    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+    // Restore texture binding
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, textureId1);
+}
+
 void display() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // state using
     calcDeltaTime();
     setMatrix();
 
-    chunk->renderChunk();
+    updatePlayerChunkPos();
+    renderChunks();
+    
+    nk_glfw3_new_frame();
+    drawDebugMenu();
+    nk_glfw3_render(NK_ANTI_ALIASING_ON, 512 * 1024, 128 * 1024);
+    // 512 * 1024   // max vertex buffer size = 512 KB
+    // 128 * 1024   // max element buffer size = 128 KB
+
+    restoreState();
 }

@@ -5,13 +5,13 @@
 # compile CXX with /usr/bin/c++
 C_DEFINES = 
 
-C_INCLUDES = -I/home/falcoxd/learngl/includes
+C_INCLUDES = -I/home/falcoxd/learngl/includes -isystem /usr/include/SDL2
 
 C_FLAGS = 
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/falcoxd/learngl/includes
+CXX_INCLUDES = -I/home/falcoxd/learngl/includes -isystem /usr/include/SDL2
 
 CXX_FLAGS = -std=gnu++17
 

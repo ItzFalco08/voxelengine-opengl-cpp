@@ -1,16 +1,17 @@
 #include <iostream>
-#include <vector>
+#include <map>
 
 #define print(x) std::cout << x << std::endl
 
 int main() {
-    std::vector<int> v1 = {1,2,3,4};
-    
-    for (int i = 0; i < v1.size(); ++i) {
-        print(v1[i]);
-    }
+    std::map<char, int> mp;
+    mp = {
+        {'a', 0},
+        {'b', 1},
+        {'c', 2},
+    };
 
-    for (auto itr = v1.begin(); itr != v1.end(); ++itr) { // itirate through memory locations
-        print(*itr);
+    for (auto itr = mp.begin(); itr != mp.end(); ++itr ) {
+        print(itr->second);
     }
 }

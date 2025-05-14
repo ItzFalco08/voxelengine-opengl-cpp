@@ -496,8 +496,134 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
   /home/falcoxd/learngl/includes/glm/gtc/quaternion.hpp \
   /home/falcoxd/learngl/includes/glm/gtc/quaternion.inl \
   /home/falcoxd/learngl/includes/glm/gtc/quaternion_simd.inl \
-  /home/falcoxd/learngl/includes/glm/gtc/type_ptr.inl
+  /home/falcoxd/learngl/includes/glm/gtc/type_ptr.inl \
+  /usr/include/SDL2/SDL.h \
+  /usr/include/SDL2/SDL_main.h \
+  /usr/include/SDL2/SDL_stdinc.h \
+  /usr/include/SDL2/SDL_config.h \
+  /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
+  /usr/include/SDL2/SDL_platform.h \
+  /usr/include/SDL2/begin_code.h \
+  /usr/include/SDL2/close_code.h \
+  /usr/include/inttypes.h \
+  /usr/include/SDL2/SDL_assert.h \
+  /usr/include/SDL2/SDL_atomic.h \
+  /usr/include/SDL2/SDL_platform.h \
+  /usr/include/SDL2/SDL_audio.h \
+  /usr/include/SDL2/SDL_error.h \
+  /usr/include/SDL2/SDL_endian.h \
+  /usr/include/SDL2/SDL_mutex.h \
+  /usr/include/SDL2/SDL_thread.h \
+  /usr/include/SDL2/SDL_rwops.h \
+  /usr/include/SDL2/SDL_clipboard.h \
+  /usr/include/SDL2/SDL_cpuinfo.h \
+  /usr/include/SDL2/SDL_events.h \
+  /usr/include/SDL2/SDL_video.h \
+  /usr/include/SDL2/SDL_pixels.h \
+  /usr/include/SDL2/SDL_rect.h \
+  /usr/include/SDL2/SDL_surface.h \
+  /usr/include/SDL2/SDL_blendmode.h \
+  /usr/include/SDL2/SDL_keyboard.h \
+  /usr/include/SDL2/SDL_keycode.h \
+  /usr/include/SDL2/SDL_scancode.h \
+  /usr/include/SDL2/SDL_mouse.h \
+  /usr/include/SDL2/SDL_joystick.h \
+  /usr/include/SDL2/SDL_guid.h \
+  /usr/include/SDL2/SDL_gamecontroller.h \
+  /usr/include/SDL2/SDL_sensor.h \
+  /usr/include/SDL2/SDL_quit.h \
+  /usr/include/SDL2/SDL_gesture.h \
+  /usr/include/SDL2/SDL_touch.h \
+  /usr/include/SDL2/SDL_filesystem.h \
+  /usr/include/SDL2/SDL_haptic.h \
+  /usr/include/SDL2/SDL_hidapi.h \
+  /usr/include/SDL2/SDL_hints.h \
+  /usr/include/SDL2/SDL_loadso.h \
+  /usr/include/SDL2/SDL_log.h \
+  /usr/include/SDL2/SDL_messagebox.h \
+  /usr/include/SDL2/SDL_metal.h \
+  /usr/include/SDL2/SDL_power.h \
+  /usr/include/SDL2/SDL_render.h \
+  /usr/include/SDL2/SDL_shape.h \
+  /usr/include/SDL2/SDL_system.h \
+  /usr/include/SDL2/SDL_timer.h \
+  /usr/include/SDL2/SDL_version.h \
+  /usr/include/SDL2/SDL_locale.h \
+  /usr/include/SDL2/SDL_misc.h \
+  /usr/include/SDL2/SDL_mixer.h \
+  /home/falcoxd/learngl/includes/nuklear/nuklear.h \
+  /home/falcoxd/learngl/includes/nuklear/nuklear_glfw_gl3.h \
+  /usr/include/c++/12/map \
+  /usr/include/c++/12/bits/stl_tree.h \
+  /usr/include/c++/12/ext/aligned_buffer.h \
+  /usr/include/c++/12/bits/node_handle.h \
+  /usr/include/c++/12/bits/stl_map.h \
+  /usr/include/c++/12/tuple \
+  /usr/include/c++/12/bits/uses_allocator.h \
+  /usr/include/c++/12/bits/stl_multimap.h \
+  /usr/include/c++/12/bits/erase_if.h \
+  /usr/include/c++/12/vector \
+  /usr/include/c++/12/bits/stl_uninitialized.h \
+  /usr/include/c++/12/bits/stl_vector.h \
+  /usr/include/c++/12/bits/stl_bvector.h \
+  /usr/include/c++/12/bits/vector.tcc
 
+
+/usr/include/c++/12/bits/stl_bvector.h:
+
+/usr/include/c++/12/bits/uses_allocator.h:
+
+/usr/include/c++/12/bits/stl_map.h:
+
+/usr/include/c++/12/bits/stl_tree.h:
+
+/home/falcoxd/learngl/includes/nuklear/nuklear.h:
+
+/usr/include/SDL2/SDL_mixer.h:
+
+/usr/include/SDL2/SDL_system.h:
+
+/usr/include/SDL2/SDL_power.h:
+
+/usr/include/SDL2/SDL_hidapi.h:
+
+/usr/include/SDL2/SDL_haptic.h:
+
+/usr/include/SDL2/SDL_filesystem.h:
+
+/usr/include/SDL2/SDL_touch.h:
+
+/home/falcoxd/learngl/includes/nuklear/nuklear_glfw_gl3.h:
+
+/usr/include/SDL2/SDL_sensor.h:
+
+/usr/include/SDL2/SDL_keycode.h:
+
+/usr/include/SDL2/SDL_keyboard.h:
+
+/usr/include/SDL2/SDL_events.h:
+
+/usr/include/SDL2/SDL_clipboard.h:
+
+/usr/include/SDL2/SDL_rwops.h:
+
+/usr/include/SDL2/SDL_thread.h:
+
+/usr/include/SDL2/SDL_mutex.h:
+
+/usr/include/SDL2/SDL_endian.h:
+
+/usr/include/SDL2/SDL_error.h:
+
+/usr/include/SDL2/SDL_atomic.h:
+
+/usr/include/SDL2/SDL_platform.h:
+
+/usr/include/SDL2/SDL_config.h:
+
+/usr/include/SDL2/SDL_main.h:
+
+/usr/include/SDL2/SDL.h:
 
 /home/falcoxd/learngl/includes/glm/gtc/type_ptr.inl:
 
@@ -511,6 +637,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 
 /home/falcoxd/learngl/includes/glm/vector_relational.hpp:
 
+/usr/include/SDL2/SDL_stdinc.h:
+
 /home/falcoxd/learngl/includes/glm/packing.hpp:
 
 /home/falcoxd/learngl/includes/glm/common.hpp:
@@ -523,9 +651,13 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/avx512bf16vlintrin.h:
 
+/usr/include/SDL2/SDL_video.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/12/include/gfniintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/f16cintrin.h:
+
+/usr/include/SDL2/SDL_pixels.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/avx512fp16intrin.h:
 
@@ -547,13 +679,25 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/avx512vpopcntdqintrin.h:
 
+/usr/include/SDL2/SDL_audio.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/12/include/avx512vbmivlintrin.h:
+
+/usr/include/inttypes.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/avx512ifmavlintrin.h:
 
+/usr/include/c++/12/bits/erase_if.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/12/include/avx512ifmaintrin.h:
 
+/usr/include/SDL2/SDL_version.h:
+
+/usr/include/SDL2/begin_code.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/12/include/avx512vldqintrin.h:
+
+/usr/include/SDL2/close_code.h:
 
 /home/falcoxd/learngl/includes/glm/simd/matrix.h:
 
@@ -591,6 +735,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/xsaveoptintrin.h:
 
+/usr/include/SDL2/SDL_metal.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/12/include/xsavecintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/xsaveintrin.h:
@@ -615,6 +761,10 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/cldemoteintrin.h:
 
+/usr/include/c++/12/bits/stl_uninitialized.h:
+
+/usr/include/SDL2/SDL_rect.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/12/include/cetintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/bmiintrin.h:
@@ -626,6 +776,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 /usr/lib/gcc/x86_64-linux-gnu/12/include/x86gprintrin.h:
 
 /home/falcoxd/learngl/includes/glm/detail/func_common_simd.inl:
+
+/usr/include/SDL2/SDL_assert.h:
 
 /home/falcoxd/learngl/includes/glm/detail/func_common.inl:
 
@@ -681,7 +833,11 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 
 /home/falcoxd/learngl/includes/glm/detail/type_mat2x4.inl:
 
+/usr/include/SDL2/SDL_log.h:
+
 /home/falcoxd/learngl/includes/glm/detail/type_mat2x4.hpp:
+
+/usr/include/c++/12/bits/stl_multimap.h:
 
 /home/falcoxd/learngl/includes/glm/mat2x4.hpp:
 
@@ -739,6 +895,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/floatn.h:
 
+/usr/include/SDL2/SDL_cpuinfo.h:
+
 /usr/include/c++/12/cassert:
 
 /home/falcoxd/learngl/includes/glm/detail/type_mat4x3.inl:
@@ -762,6 +920,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 /home/falcoxd/learngl/includes/glm/detail/func_matrix.hpp:
 
 /usr/include/c++/12/cctype:
+
+/usr/include/c++/12/ext/aligned_buffer.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/avx5124fmapsintrin.h:
 
@@ -800,6 +960,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 /usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/floatn-common.h:
+
+/usr/include/c++/12/bits/node_handle.h:
 
 /usr/include/c++/12/ext/atomicity.h:
 
@@ -857,6 +1019,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 
 /usr/include/c++/12/bits/cxxabi_init_exception.h:
 
+/usr/include/c++/12/bits/stl_vector.h:
+
 /usr/include/x86_64-linux-gnu/bits/dlfcn.h:
 
 /usr/include/locale.h:
@@ -891,6 +1055,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h:
 
+/usr/include/SDL2/SDL_messagebox.h:
+
 /home/falcoxd/learngl/includes/KHR/khrplatform.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/vpclmulqdqintrin.h:
@@ -921,6 +1087,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 
 /usr/include/c++/12/bits/locale_classes.tcc:
 
+/usr/include/c++/12/vector:
+
 /usr/include/x86_64-linux-gnu/gnu/stubs.h:
 
 /home/falcoxd/learngl/includes/glm/detail/type_vec1.hpp:
@@ -950,6 +1118,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 /usr/include/c++/12/bits/stringfwd.h:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
+
+/usr/include/SDL2/SDL_timer.h:
 
 /usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
 
@@ -985,6 +1155,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 
 /usr/include/stdio.h:
 
+/usr/include/c++/12/tuple:
+
 /usr/include/c++/12/bits/functional_hash.h:
 
 /usr/include/c++/12/math.h:
@@ -1007,9 +1179,13 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
 
+/usr/include/SDL2/SDL_misc.h:
+
 /usr/include/c++/12/bits/hash_bytes.h:
 
 /usr/include/x86_64-linux-gnu/bits/time64.h:
+
+/usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
 
@@ -1033,6 +1209,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/limits.h:
 
+/usr/include/SDL2/SDL_gamecontroller.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
@@ -1044,6 +1222,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 /usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
 
 /usr/include/x86_64-linux-gnu/bits/types.h:
+
+/usr/include/SDL2/SDL_scancode.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/amxtileintrin.h:
 
@@ -1091,6 +1271,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
 
+/usr/include/SDL2/SDL_guid.h:
+
 /home/falcoxd/learngl/includes/glm/detail/type_vec3.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
@@ -1119,15 +1301,21 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 
 /usr/include/c++/12/bits/invoke.h:
 
+/usr/include/SDL2/SDL_render.h:
+
 /usr/include/c++/12/bits/cxxabi_forced.h:
 
 /home/falcoxd/learngl/includes/glm/detail/type_mat3x3.hpp:
 
 /usr/include/c++/12/bits/stl_iterator_base_types.h:
 
+/usr/include/SDL2/SDL_locale.h:
+
 /usr/include/x86_64-linux-gnu/c++/12/bits/ctype_base.h:
 
 /usr/include/x86_64-linux-gnu/bits/uio_lim.h:
+
+/usr/include/SDL2/SDL_hints.h:
 
 /usr/include/pthread.h:
 
@@ -1157,6 +1345,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 
 /usr/include/c++/12/bits/stl_function.h:
 
+/usr/include/SDL2/SDL_surface.h:
+
 /usr/include/c++/12/backward/binders.h:
 
 /usr/include/c++/12/bits/stl_algobase.h:
@@ -1182,6 +1372,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 /usr/include/c++/12/ext/alloc_traits.h:
 
 /usr/include/c++/12/bits/stl_construct.h:
+
+/usr/include/c++/12/bits/vector.tcc:
 
 /usr/include/c++/12/ext/string_conversions.h:
 
@@ -1209,9 +1401,15 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
 
+/usr/include/c++/12/map:
+
+/usr/include/SDL2/SDL_loadso.h:
+
 /usr/include/c++/12/bits/charconv.h:
 
 /usr/include/c++/12/bits/basic_string.tcc:
+
+/usr/include/SDL2/SDL_mouse.h:
 
 /usr/include/c++/12/system_error:
 
@@ -1220,6 +1418,10 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 /usr/include/c++/12/streambuf:
 
 /usr/include/c++/12/bits/streambuf.tcc:
+
+/usr/include/SDL2/SDL_shape.h:
+
+/usr/include/SDL2/SDL_quit.h:
 
 /usr/include/c++/12/string_view:
 
@@ -1230,6 +1432,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 /usr/include/c++/12/bits/ostream.tcc:
 
 /usr/include/c++/12/bits/streambuf_iterator.h:
+
+/usr/include/SDL2/SDL_gesture.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/float.h:
 
@@ -1307,6 +1511,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 
 /usr/include/c++/12/tr1/modified_bessel_func.tcc:
 
+/usr/include/SDL2/SDL_blendmode.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/12/include/avx512bwintrin.h:
 
 /home/falcoxd/learngl/includes/glm/detail/func_exponential_simd.inl:
@@ -1322,6 +1528,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 /usr/include/c++/12/sstream:
 
 /home/falcoxd/learngl/includes/STB/stb_image.h:
+
+/usr/include/SDL2/SDL_joystick.h:
 
 /home/falcoxd/learngl/includes/glm/detail/func_packing.hpp:
 
