@@ -1,5 +1,6 @@
 all:
-	g++ ./test.cpp -o test
 	./test
+test: test.cpp
+	g++ test.cpp -o test
 cleanup:
 	rm test

@@ -1,7 +1,12 @@
 #include "main.hpp"
 #include <map>
 #include <vector>
+#include <atomic>
+#include <thread>
+
 bool playBgm() {
+    std::cout << "playBgm called" << std::endl;
+    
     if (SDL_Init(SDL_INIT_AUDIO) < 0) {
         printf("SDL_Init AUDIO failed: %s\n", SDL_GetError());
         return false;
@@ -36,25 +41,29 @@ enum BlockType {
     BEDROCK // 4
 };
 
+// shader class
 Shader* shader;
 
 // Chunk size
 const int CHUNK_WIDTH = 16;
-const int CHUNK_HEIGHT = 16; // 16 until we add caves via 3D noise
-int renderDistance = 2;
+const int CHUNK_HEIGHT = 32; // 16 until we add caves via 3D noise
+int renderDistance = 5;
+
+float noise_scale = 0.05f;
+int maxHeight = 20;
 
 // Chunk Class
 class Chunk {
-public:
+private:
     int initialX;
     int initialZ;
     int finalX;
     int finalZ;
 
-    float scale = 0.1f;
-    int maxHeight = 10;
-
     int blocks[CHUNK_WIDTH][CHUNK_HEIGHT][CHUNK_WIDTH];
+
+    std::atomic <bool> verticesLoaded{false};
+    bool verticesUploaded = false;
 
     std::vector <float> vertices;
 
@@ -69,21 +78,7 @@ public:
         RIGHT,
     };
 
-    ~Chunk() {
-        glDeleteBuffers(1, &VBO);
-        glDeleteVertexArrays(1, &VBO);
-    }
-    
-    Chunk(int x, int z) {
-        // generate form (16x, 16z) to (16x + 15, 16z + 15)     
-        initialX = x * 16;
-        initialZ = z * 16;
-        finalX = x * 16 + 15;
-        finalZ = z * 16 + 15;
-
-        genChunk();
-        buildMesh();
-
+    void setVertices() {
         glGenVertexArrays(1, &VAO);
         glGenBuffers(1, &VBO);
 
@@ -112,13 +107,14 @@ public:
         glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void*) (6 * sizeof(float)));
 
         glBindVertexArray(0);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
-
+    
     void genChunk() {
         for (int x = initialX; x <= finalX; x++) {
-            float nx = x * scale;
+            float nx = x * noise_scale;
             for (int z = initialZ; z <= finalZ ; z++) {
-                float nz = z * scale;
+                float nz = z * noise_scale;
 
                 // generate noise
                 float noise = stb_perlin_noise3(nx, nz, 0.0f, 0, 0, 0); // -1 -> +1
@@ -126,24 +122,27 @@ public:
                 float normalized = (noise + 1) / 2.0f; // 0 -> 1
                 int height = (int) (normalized * maxHeight); // 0 -> maxHeight(10)
                 
+                int localX = x - initialX;
+                int localZ = z - initialZ;
+
                 // render block upto x, height, z 
                 for (int y = 0; y < CHUNK_HEIGHT; y++) {
                     int terrainY = height + (CHUNK_HEIGHT - maxHeight);
 
                     if(y == terrainY) {
-                        blocks[x - initialX][y][z - initialZ] = GRASS;
+                        blocks[localX][y][localZ] = GRASS;
                     }
                     else if ( y < terrainY && y >= terrainY - 3) {
-                        blocks[x - initialX][y][z - initialZ] = DIRT;
+                        blocks[localX][y][localZ] = DIRT;
                     }
                     else if ( y < terrainY - 3 && y > 0) {
-                        blocks[x - initialX][y][z - initialZ] = STONE;
+                        blocks[localX][y][localZ] = STONE;
                     } 
                     else if (y == 0) {
-                        blocks[x - initialX][y][z - initialZ] = BEDROCK;
+                        blocks[localX][y][localZ] = BEDROCK;
                     }
                     else {
-                       blocks[x - initialX][y][z - initialZ] = AIR;
+                       blocks[localX][y][localZ] = AIR;
                     }
                 }
             }
@@ -154,7 +153,7 @@ public:
         // first cheack if x,y,z is valid 
         if ( x < 0 || x >= CHUNK_WIDTH || z < 0 || z >= CHUNK_WIDTH || y < 0 || y >= CHUNK_HEIGHT) {
             return true;
-        } 
+        }
         // if the block inside chunk, cheack if its assigned as air or not
         if (blocks[x][y][z] == AIR) {
             return true;
@@ -222,14 +221,47 @@ public:
         }
     }
 
+    void buildVertices() {
+        genChunk(); // set blocks 
+        buildMesh(); // build vertices array from blocks
+        verticesLoaded = true;
+        setVertices(); // will this run on main thread? because its called inside
+    }
+
+    void uploadToGpu() {
+        if (verticesLoaded && !verticesUploaded) {
+            setVertices();
+            verticesUploaded = true;
+        }
+    }
+
+public:
+    ~Chunk() {
+        glDeleteBuffers(1, &VBO);
+    }
+
+    Chunk(int x, int z) {
+        // generate form (16x, 16z) to (16x + 15, 16z + 15)     
+        initialX = x * 16;
+        initialZ = z * 16;
+        finalX = initialX + 15;
+        finalZ = initialZ + 15;
+
+        std::thread chunkGen(&Chunk::buildVertices, this);
+        chunkGen.detach();
+    }
+
     void renderChunk() {
-        // render all vertex from vertices
-        glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 7);
+        uploadToGpu(); // uploads vertices to GPU if its loaded 
+        if(verticesUploaded) {
+            // render all vertex from vertices
+            glBindVertexArray(VAO);
+            glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 7);
+        }
     }
 };
 
-std::map<std::pair<int, int>, Chunk> chunks;
+std::map<std::pair<int, int>, std::unique_ptr<Chunk>> chunks;
 
 void initChunks() {
     int fromX = -renderDistance;
@@ -239,19 +271,17 @@ void initChunks() {
 
     for (int x = fromX; x <= toX; x++) {
         for (int z = fromZ; z <= toZ; z++) {
-            chunks.emplace(std::make_pair(x, z), Chunk(x, z));
+            chunks.emplace(std::make_pair(x, z), std::make_unique<Chunk>(x, z));
         }
     }
-
 }
 
 void renderChunks() {
     // render chunks map
     for(auto itr = chunks.begin(); itr != chunks.end(); itr++) {
-        itr->second.renderChunk();
+        (itr->second)->renderChunk();
     }
 }
-
 
 // nuklear context
 struct nk_context *ctx;
@@ -292,6 +322,41 @@ void drawDebugMenu() {
         nk_label(ctx, "player Chunk Pos:", NK_TEXT_LEFT);
         snprintf(buffer, sizeof(buffer), "X: %.2f Z: %.2f", playerChunkPos.x, playerChunkPos.y);
         nk_label(ctx, buffer, NK_TEXT_LEFT);
+
+        nk_label(ctx, "FPS:", NK_TEXT_LEFT);
+        snprintf(buffer, sizeof(buffer), "%.2f", 1.0f / deltaTime);
+        nk_label(ctx, buffer, NK_TEXT_LEFT);
+
+        float noiseMin = 0.0f;
+        float noiseMax = 1.0f;
+        float noiseStep = 0.05f;
+
+        snprintf(buffer, sizeof(buffer), "Noise Scale: %.2f", noise_scale);
+
+        nk_label(ctx, buffer, NK_TEXT_LEFT);
+        nk_slider_float(ctx, noiseMin, &noise_scale, noiseMax, noiseStep);
+
+        int minMaxH = 5;
+        int maxMaxH = 50;
+        int stepMaxH = 1;
+
+        snprintf(buffer, sizeof(buffer), "Max Height: %i", maxHeight);
+        nk_label(ctx, buffer, NK_TEXT_LEFT);
+        nk_slider_int(ctx, minMaxH, &maxHeight, maxMaxH, stepMaxH);
+
+        int minRenderDistance = 1;
+        int maxRenderDistance = 30;
+        int stepRenderDistance = 1;
+
+        snprintf(buffer, sizeof(buffer), "Render Distance: %i", renderDistance);
+        nk_label(ctx, buffer, NK_TEXT_LEFT);
+        nk_slider_int(ctx, minRenderDistance, &renderDistance, maxRenderDistance, stepRenderDistance);
+
+
+        if (nk_button_label(ctx, "Reload Chunks")) {
+            chunks.clear();
+            initChunks();
+        }
     }
 
     nk_end(ctx);
@@ -374,6 +439,9 @@ int main() {
     return 0;
 }
 
+bool cursorLocked = true;
+bool escPressedLastFrame = false;  // define this globally or persistently
+
 void processInput(GLFWwindow* window) {
     if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
         camPos += camFront * deltaTime * camSpeed;
@@ -393,6 +461,22 @@ void processInput(GLFWwindow* window) {
     if(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) {
         camPos -= up * deltaTime * camSpeed;
     }
+
+    bool escPressed = glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS;
+
+    if(!escPressedLastFrame && escPressed) {
+        if(cursorLocked) {
+            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL); 
+            glfwSetCursorPosCallback(window, 0); 
+            cursorLocked = false;
+        } else {
+            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+            glfwSetCursorPosCallback(window, mouse_callback); 
+            cursorLocked = true;
+        }
+    }
+
+    escPressedLastFrame = escPressed;
 }
 
 unsigned int loadTexture(const char* texLocation) {
@@ -451,7 +535,7 @@ void setMatrix() {
 
     camRight = glm::normalize(glm::cross(camFront, up));
 
-    projection = glm::perspective(glm::radians(45.0f), 16.0f / 9.0f, 0.1f, 100.0f);
+    projection = glm::perspective(glm::radians(45.0f), 16.0f / 9.0f, 0.1f, 1000.0f);
 
     glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
     glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
@@ -514,7 +598,7 @@ void handleChunks() {
 
             if (chunks.find(pos) == chunks.end()) {
                 // it do not exists
-                chunks.emplace(std::make_pair(x, z), Chunk(x, z));
+                chunks.emplace(std::make_pair(x, z), std::make_unique<Chunk>(x, z));
             }
         }
     }

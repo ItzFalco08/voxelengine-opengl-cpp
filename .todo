@@ -1,9 +1,10 @@
-// v1.0
-TODO: add player render distance with infinite chunk generation
+// v1.1
+TODO: optimize chunk generation with worker threads
+TODO: fix missing chunks
 TODO: add block break and place
 TOOO: add more blocks to break and place
 
-// v1.1
+// v1.2
 TODO: add trees using noise
 TODO: ADD SETTINGS
 TODO: add grass using noise

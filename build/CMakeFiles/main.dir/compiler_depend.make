@@ -566,8 +566,25 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
   /usr/include/c++/12/bits/stl_uninitialized.h \
   /usr/include/c++/12/bits/stl_vector.h \
   /usr/include/c++/12/bits/stl_bvector.h \
-  /usr/include/c++/12/bits/vector.tcc
+  /usr/include/c++/12/bits/vector.tcc \
+  /usr/include/c++/12/atomic \
+  /usr/include/c++/12/bits/atomic_base.h \
+  /usr/include/c++/12/bits/atomic_lockfree_defines.h \
+  /usr/include/c++/12/thread \
+  /usr/include/c++/12/bits/std_thread.h \
+  /usr/include/c++/12/bits/unique_ptr.h \
+  /usr/include/c++/12/bits/this_thread_sleep.h \
+  /usr/include/c++/12/bits/chrono.h \
+  /usr/include/c++/12/ratio \
+  /usr/include/c++/12/ctime \
+  /usr/include/c++/12/bits/parse_numbers.h
 
+
+/usr/include/c++/12/ctime:
+
+/usr/include/c++/12/bits/atomic_lockfree_defines.h:
+
+/usr/include/c++/12/atomic:
 
 /usr/include/c++/12/bits/stl_bvector.h:
 
@@ -743,6 +760,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/waitpkgintrin.h:
 
+/usr/include/c++/12/bits/unique_ptr.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/12/include/uintrintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/tsxldtrkintrin.h:
@@ -816,6 +835,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 /home/falcoxd/learngl/includes/glm/detail/type_mat4x2.inl:
 
 /home/falcoxd/learngl/includes/glm/detail/type_mat4x2.hpp:
+
+/usr/include/c++/12/bits/this_thread_sleep.h:
 
 /home/falcoxd/learngl/includes/glm/mat4x2.hpp:
 
@@ -1011,6 +1032,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 
 /usr/include/c++/12/tr1/beta_function.tcc:
 
+/usr/include/c++/12/bits/chrono.h:
+
 /usr/include/c++/12/clocale:
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/stdarg.h:
@@ -1052,6 +1075,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 /home/falcoxd/learngl/includes/glm/matrix.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
+
+/usr/include/c++/12/ratio:
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h:
 
@@ -1201,6 +1226,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 
 /usr/include/asm-generic/errno-base.h:
 
+/usr/include/c++/12/bits/std_thread.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/12/include/pkuintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/enqcmdintrin.h:
@@ -1308,6 +1335,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 /home/falcoxd/learngl/includes/glm/detail/type_mat3x3.hpp:
 
 /usr/include/c++/12/bits/stl_iterator_base_types.h:
+
+/usr/include/c++/12/bits/atomic_base.h:
 
 /usr/include/SDL2/SDL_locale.h:
 
@@ -1445,6 +1474,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/fp-fast.h:
 
+/usr/include/c++/12/thread:
+
 /usr/include/c++/12/bits/cpp_type_traits.h:
 
 /usr/include/c++/12/bits/codecvt.h:
@@ -1544,6 +1575,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /home/falcoxd/learngl/src/main.cpp \
 /usr/lib/gcc/x86_64-linux-gnu/12/include/xmmintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/mm_malloc.h:
+
+/usr/include/c++/12/bits/parse_numbers.h:
 
 /home/falcoxd/learngl/includes/STB/stb_perlin.h:
 
