@@ -1,0 +1,1 @@
+ -lopengl32 "C:/Users/pc/Desktop/Minecraft OpenGL/lib/libSDL2.a" "C:/Users/pc/Desktop/Minecraft OpenGL/lib/libSDL2_mixer.a" "C:/Users/pc/Desktop/Minecraft OpenGL/lib/libglfw3.a" -lgdi32 -luser32 -lshell32 -lkernel32 -lsetupapi -lwinmm -limm32 -lversion -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 

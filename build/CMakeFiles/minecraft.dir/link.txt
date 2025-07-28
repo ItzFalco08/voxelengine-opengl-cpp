@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\minecraft.dir/objects.a
+C:\w64devkit\bin\ar.exe qc CMakeFiles\minecraft.dir/objects.a @CMakeFiles\minecraft.dir\objects1.rsp
+C:\w64devkit\bin\c++.exe -Wl,-subsystem,console -Wl,--whole-archive CMakeFiles\minecraft.dir/objects.a -Wl,--no-whole-archive -o minecraft.exe -Wl,--out-implib,libminecraft.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\minecraft.dir\linkLibs.rsp
