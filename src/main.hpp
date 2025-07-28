@@ -8,7 +8,6 @@
 #include <GLFW/glfw3.h>
 
 #include <fstream> // file manipulator module
-#include "utils/utils.cpp"
 #include <cmath>
 #include "Shader/Shader.cpp"
 
