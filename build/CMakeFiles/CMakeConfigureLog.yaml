@@ -27,8 +27,30 @@ events:
       
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.exe"
       
-      The C compiler identification is GNU, found in:
+      The C compiler identification could not be found in:
         C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/4.0.2/CompilerIdC/a.exe
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: C:/w64devkit/bin/cc.exe 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.o"
+      
+      The C compiler identification is GNU, found in:
+        C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.o
       
   -
     kind: "message-v1"
@@ -61,8 +83,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-5v64ec"
-      binary: "C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-5v64ec"
+      source: "C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-a3ur85"
+      binary: "C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-a3ur85"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_C_FLAGS_DEBUG: "-g"
@@ -71,13 +93,13 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-5v64ec'
+        Change Dir: 'C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-a3ur85'
         
-        Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/w64devkit/bin/mingw32-make.exe -f Makefile cmTC_5f936/fast
-        make  -f CMakeFiles\\cmTC_5f936.dir\\build.make CMakeFiles/cmTC_5f936.dir/build
-        make[1]: Entering directory 'C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-5v64ec'
-        Building C object CMakeFiles/cmTC_5f936.dir/CMakeCCompilerABI.c.obj
-        C:\\w64devkit\\bin\\cc.exe   -v -o CMakeFiles\\cmTC_5f936.dir\\CMakeCCompilerABI.c.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCCompilerABI.c"
+        Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/w64devkit/bin/mingw32-make.exe -f Makefile cmTC_cc512/fast
+        make  -f CMakeFiles\\cmTC_cc512.dir\\build.make CMakeFiles/cmTC_cc512.dir/build
+        make[1]: Entering directory 'C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-a3ur85'
+        Building C object CMakeFiles/cmTC_cc512.dir/CMakeCCompilerABI.c.obj
+        C:\\w64devkit\\bin\\cc.exe   -v -o CMakeFiles\\cmTC_cc512.dir\\CMakeCCompilerABI.c.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCCompilerABI.c"
         Using built-in specs.
         COLLECT_GCC=cc
         Target: x86_64-w64-mingw32
@@ -85,8 +107,8 @@ events:
         Thread model: posix
         Supported LTO compression algorithms: zlib
         gcc version 15.1.0 (GCC) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_5f936.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_5f936.dir\\'
-         C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/cc1.exe -quiet -v -iprefix C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/ -isysroot C:/w64devkit/bin/../../w64devkit -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles\\cmTC_5f936.dir\\ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o C:\\Users\\pc\\AppData\\Local\\Temp\\ccHDRAJe.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_cc512.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_cc512.dir\\'
+         C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/cc1.exe -quiet -v -iprefix C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/ -isysroot C:/w64devkit/bin/../../w64devkit -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles\\cmTC_cc512.dir\\ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o C:\\Users\\pc\\AppData\\Local\\Temp\\ccNyoBR6.s
         GNU C23 (GCC) version 15.1.0 (x86_64-w64-mingw32)
         	compiled by GNU C version 15.1.0, GMP version 6.3.0, MPFR version 4.2.2, MPC version 1.3.1, isl version none
         GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
@@ -102,17 +124,17 @@ events:
          C:/w64devkit/bin/../../w64devkit/include
         End of search list.
         Compiler executable checksum: ea94c2a8c01b9c0dac297db65383bfc3
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_5f936.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_5f936.dir\\'
-         as -v -o CMakeFiles\\cmTC_5f936.dir\\CMakeCCompilerABI.c.obj C:\\Users\\pc\\AppData\\Local\\Temp\\ccHDRAJe.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_cc512.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_cc512.dir\\'
+         as -v -o CMakeFiles\\cmTC_cc512.dir\\CMakeCCompilerABI.c.obj C:\\Users\\pc\\AppData\\Local\\Temp\\ccNyoBR6.s
         GNU assembler version 2.44 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.44
         COMPILER_PATH=C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/;C:/w64devkit/bin/../libexec/gcc/
         LIBRARY_PATH=C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/;C:/w64devkit/bin/../lib/gcc/;C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib/;C:/w64devkit/bin/../../w64devkit/lib/../lib/;C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../;C:/w64devkit/bin/../../w64devkit/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_5f936.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_5f936.dir\\CMakeCCompilerABI.c.'
-        Linking C executable cmTC_5f936.exe
-        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_5f936.dir\\link.txt --verbose=1
-        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E rm -f CMakeFiles\\cmTC_5f936.dir/objects.a
-        C:\\w64devkit\\bin\\ar.exe qc CMakeFiles\\cmTC_5f936.dir/objects.a @CMakeFiles\\cmTC_5f936.dir\\objects1.rsp
-        C:\\w64devkit\\bin\\cc.exe  -v -Wl,-v -Wl,--whole-archive CMakeFiles\\cmTC_5f936.dir/objects.a -Wl,--no-whole-archive -o cmTC_5f936.exe -Wl,--out-implib,libcmTC_5f936.dll.a -Wl,--major-image-version,0,--minor-image-version,0
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_cc512.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_cc512.dir\\CMakeCCompilerABI.c.'
+        Linking C executable cmTC_cc512.exe
+        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_cc512.dir\\link.txt --verbose=1
+        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E rm -f CMakeFiles\\cmTC_cc512.dir/objects.a
+        C:\\w64devkit\\bin\\ar.exe qc CMakeFiles\\cmTC_cc512.dir/objects.a @CMakeFiles\\cmTC_cc512.dir\\objects1.rsp
+        C:\\w64devkit\\bin\\cc.exe  -v -Wl,-v -Wl,--whole-archive CMakeFiles\\cmTC_cc512.dir/objects.a -Wl,--no-whole-archive -o cmTC_cc512.exe -Wl,--out-implib,libcmTC_cc512.dll.a -Wl,--major-image-version,0,--minor-image-version,0
         Using built-in specs.
         COLLECT_GCC=cc
         COLLECT_LTO_WRAPPER=C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/lto-wrapper.exe
@@ -123,13 +145,13 @@ events:
         gcc version 15.1.0 (GCC) 
         COMPILER_PATH=C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/;C:/w64devkit/bin/../libexec/gcc/
         LIBRARY_PATH=C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/;C:/w64devkit/bin/../lib/gcc/;C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib/;C:/w64devkit/bin/../../w64devkit/lib/../lib/;C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../;C:/w64devkit/bin/../../w64devkit/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_5f936.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_5f936.'
-         C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/collect2.exe --sysroot=C:/w64devkit/bin/../../w64devkit -m i386pep -Bdynamic -o cmTC_5f936.exe C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib/crt2.o C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtbegin.o -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0 -LC:/w64devkit/bin/../lib/gcc -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib -LC:/w64devkit/bin/../../w64devkit/lib/../lib -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../.. -LC:/w64devkit/bin/../../w64devkit/lib -v --whole-archive CMakeFiles\\cmTC_5f936.dir/objects.a --no-whole-archive --out-implib libcmTC_5f936.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtend.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_cc512.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_cc512.'
+         C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/collect2.exe --sysroot=C:/w64devkit/bin/../../w64devkit -m i386pep -Bdynamic -o cmTC_cc512.exe C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib/crt2.o C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtbegin.o -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0 -LC:/w64devkit/bin/../lib/gcc -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib -LC:/w64devkit/bin/../../w64devkit/lib/../lib -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../.. -LC:/w64devkit/bin/../../w64devkit/lib -v --whole-archive CMakeFiles\\cmTC_cc512.dir/objects.a --no-whole-archive --out-implib libcmTC_cc512.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtend.o
         collect2 version 15.1.0
-        C:\\w64devkit\\bin/ld.exe --sysroot=C:/w64devkit/bin/../../w64devkit -m i386pep -Bdynamic -o cmTC_5f936.exe C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib/crt2.o C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtbegin.o -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0 -LC:/w64devkit/bin/../lib/gcc -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib -LC:/w64devkit/bin/../../w64devkit/lib/../lib -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../.. -LC:/w64devkit/bin/../../w64devkit/lib -v --whole-archive CMakeFiles\\cmTC_5f936.dir/objects.a --no-whole-archive --out-implib libcmTC_5f936.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtend.o
+        C:\\w64devkit\\bin/ld.exe --sysroot=C:/w64devkit/bin/../../w64devkit -m i386pep -Bdynamic -o cmTC_cc512.exe C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib/crt2.o C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtbegin.o -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0 -LC:/w64devkit/bin/../lib/gcc -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib -LC:/w64devkit/bin/../../w64devkit/lib/../lib -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../.. -LC:/w64devkit/bin/../../w64devkit/lib -v --whole-archive CMakeFiles\\cmTC_cc512.dir/objects.a --no-whole-archive --out-implib libcmTC_cc512.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtend.o
         GNU ld (GNU Binutils) 2.44
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_5f936.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_5f936.'
-        make[1]: Leaving directory 'C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-5v64ec'
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_cc512.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_cc512.'
+        make[1]: Leaving directory 'C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-a3ur85'
         
       exitCode: 0
   -
@@ -162,13 +184,13 @@ events:
       Parsed C implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: 'C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-5v64ec']
+        ignore line: [Change Dir: 'C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-a3ur85']
         ignore line: []
-        ignore line: [Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/w64devkit/bin/mingw32-make.exe -f Makefile cmTC_5f936/fast]
-        ignore line: [make  -f CMakeFiles\\cmTC_5f936.dir\\build.make CMakeFiles/cmTC_5f936.dir/build]
-        ignore line: [make[1]: Entering directory 'C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-5v64ec']
-        ignore line: [Building C object CMakeFiles/cmTC_5f936.dir/CMakeCCompilerABI.c.obj]
-        ignore line: [C:\\w64devkit\\bin\\cc.exe   -v -o CMakeFiles\\cmTC_5f936.dir\\CMakeCCompilerABI.c.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCCompilerABI.c"]
+        ignore line: [Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/w64devkit/bin/mingw32-make.exe -f Makefile cmTC_cc512/fast]
+        ignore line: [make  -f CMakeFiles\\cmTC_cc512.dir\\build.make CMakeFiles/cmTC_cc512.dir/build]
+        ignore line: [make[1]: Entering directory 'C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-a3ur85']
+        ignore line: [Building C object CMakeFiles/cmTC_cc512.dir/CMakeCCompilerABI.c.obj]
+        ignore line: [C:\\w64devkit\\bin\\cc.exe   -v -o CMakeFiles\\cmTC_cc512.dir\\CMakeCCompilerABI.c.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCCompilerABI.c"]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=cc]
         ignore line: [Target: x86_64-w64-mingw32]
@@ -176,8 +198,8 @@ events:
         ignore line: [Thread model: posix]
         ignore line: [Supported LTO compression algorithms: zlib]
         ignore line: [gcc version 15.1.0 (GCC) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_5f936.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_5f936.dir\\']
-        ignore line: [ C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/cc1.exe -quiet -v -iprefix C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/ -isysroot C:/w64devkit/bin/../../w64devkit -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles\\cmTC_5f936.dir\\ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o C:\\Users\\pc\\AppData\\Local\\Temp\\ccHDRAJe.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_cc512.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_cc512.dir\\']
+        ignore line: [ C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/cc1.exe -quiet -v -iprefix C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/ -isysroot C:/w64devkit/bin/../../w64devkit -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles\\cmTC_cc512.dir\\ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o C:\\Users\\pc\\AppData\\Local\\Temp\\ccNyoBR6.s]
         ignore line: [GNU C23 (GCC) version 15.1.0 (x86_64-w64-mingw32)]
         ignore line: [	compiled by GNU C version 15.1.0  GMP version 6.3.0  MPFR version 4.2.2  MPC version 1.3.1  isl version none]
         ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
@@ -193,8 +215,8 @@ events:
         ignore line: [ C:/w64devkit/bin/../../w64devkit/include]
         ignore line: [End of search list.]
         ignore line: [Compiler executable checksum: ea94c2a8c01b9c0dac297db65383bfc3]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_5f936.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_5f936.dir\\']
-        ignore line: [ as -v -o CMakeFiles\\cmTC_5f936.dir\\CMakeCCompilerABI.c.obj C:\\Users\\pc\\AppData\\Local\\Temp\\ccHDRAJe.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_cc512.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_cc512.dir\\']
+        ignore line: [ as -v -o CMakeFiles\\cmTC_cc512.dir\\CMakeCCompilerABI.c.obj C:\\Users\\pc\\AppData\\Local\\Temp\\ccNyoBR6.s]
         ignore line: [GNU assembler version 2.44 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.44]
         ignore line: [COMPILER_PATH=C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/]
         ignore line: [C:/w64devkit/bin/../libexec/gcc/]
@@ -204,12 +226,12 @@ events:
         ignore line: [C:/w64devkit/bin/../../w64devkit/lib/../lib/]
         ignore line: [C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../]
         ignore line: [C:/w64devkit/bin/../../w64devkit/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_5f936.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_5f936.dir\\CMakeCCompilerABI.c.']
-        ignore line: [Linking C executable cmTC_5f936.exe]
-        ignore line: ["C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_5f936.dir\\link.txt --verbose=1]
-        ignore line: ["C:\\Program Files\\CMake\\bin\\cmake.exe" -E rm -f CMakeFiles\\cmTC_5f936.dir/objects.a]
-        ignore line: [C:\\w64devkit\\bin\\ar.exe qc CMakeFiles\\cmTC_5f936.dir/objects.a @CMakeFiles\\cmTC_5f936.dir\\objects1.rsp]
-        ignore line: [C:\\w64devkit\\bin\\cc.exe  -v -Wl -v -Wl --whole-archive CMakeFiles\\cmTC_5f936.dir/objects.a -Wl --no-whole-archive -o cmTC_5f936.exe -Wl --out-implib libcmTC_5f936.dll.a -Wl --major-image-version 0 --minor-image-version 0]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_cc512.dir\\CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_cc512.dir\\CMakeCCompilerABI.c.']
+        ignore line: [Linking C executable cmTC_cc512.exe]
+        ignore line: ["C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_cc512.dir\\link.txt --verbose=1]
+        ignore line: ["C:\\Program Files\\CMake\\bin\\cmake.exe" -E rm -f CMakeFiles\\cmTC_cc512.dir/objects.a]
+        ignore line: [C:\\w64devkit\\bin\\ar.exe qc CMakeFiles\\cmTC_cc512.dir/objects.a @CMakeFiles\\cmTC_cc512.dir\\objects1.rsp]
+        ignore line: [C:\\w64devkit\\bin\\cc.exe  -v -Wl -v -Wl --whole-archive CMakeFiles\\cmTC_cc512.dir/objects.a -Wl --no-whole-archive -o cmTC_cc512.exe -Wl --out-implib libcmTC_cc512.dll.a -Wl --major-image-version 0 --minor-image-version 0]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=cc]
         ignore line: [COLLECT_LTO_WRAPPER=C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/lto-wrapper.exe]
@@ -226,15 +248,15 @@ events:
         ignore line: [C:/w64devkit/bin/../../w64devkit/lib/../lib/]
         ignore line: [C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../]
         ignore line: [C:/w64devkit/bin/../../w64devkit/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_5f936.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_5f936.']
-        link line: [ C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/collect2.exe --sysroot=C:/w64devkit/bin/../../w64devkit -m i386pep -Bdynamic -o cmTC_5f936.exe C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib/crt2.o C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtbegin.o -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0 -LC:/w64devkit/bin/../lib/gcc -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib -LC:/w64devkit/bin/../../w64devkit/lib/../lib -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../.. -LC:/w64devkit/bin/../../w64devkit/lib -v --whole-archive CMakeFiles\\cmTC_5f936.dir/objects.a --no-whole-archive --out-implib libcmTC_5f936.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtend.o]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_cc512.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_cc512.']
+        link line: [ C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/collect2.exe --sysroot=C:/w64devkit/bin/../../w64devkit -m i386pep -Bdynamic -o cmTC_cc512.exe C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib/crt2.o C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtbegin.o -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0 -LC:/w64devkit/bin/../lib/gcc -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib -LC:/w64devkit/bin/../../w64devkit/lib/../lib -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../.. -LC:/w64devkit/bin/../../w64devkit/lib -v --whole-archive CMakeFiles\\cmTC_cc512.dir/objects.a --no-whole-archive --out-implib libcmTC_cc512.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtend.o]
           arg [C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/collect2.exe] ==> ignore
           arg [--sysroot=C:/w64devkit/bin/../../w64devkit] ==> ignore
           arg [-m] ==> ignore
           arg [i386pep] ==> ignore
           arg [-Bdynamic] ==> search dynamic
           arg [-o] ==> ignore
-          arg [cmTC_5f936.exe] ==> ignore
+          arg [cmTC_cc512.exe] ==> ignore
           arg [C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib/crt2.o] ==> obj [C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib/crt2.o]
           arg [C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtbegin.o] ==> obj [C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtbegin.o]
           arg [-LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0] ==> dir [C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0]
@@ -245,10 +267,10 @@ events:
           arg [-LC:/w64devkit/bin/../../w64devkit/lib] ==> dir [C:/w64devkit/bin/../../w64devkit/lib]
           arg [-v] ==> ignore
           arg [--whole-archive] ==> ignore
-          arg [CMakeFiles\\cmTC_5f936.dir/objects.a] ==> ignore
+          arg [CMakeFiles\\cmTC_cc512.dir/objects.a] ==> ignore
           arg [--no-whole-archive] ==> ignore
           arg [--out-implib] ==> ignore
-          arg [libcmTC_5f936.dll.a] ==> ignore
+          arg [libcmTC_cc512.dll.a] ==> ignore
           arg [--major-image-version] ==> ignore
           arg [0] ==> ignore
           arg [--minor-image-version] ==> ignore
@@ -270,7 +292,7 @@ events:
           arg [-lkernel32] ==> lib [kernel32]
           arg [C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtend.o] ==> obj [C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtend.o]
         ignore line: [collect2 version 15.1.0]
-        ignore line: [C:\\w64devkit\\bin/ld.exe --sysroot=C:/w64devkit/bin/../../w64devkit -m i386pep -Bdynamic -o cmTC_5f936.exe C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib/crt2.o C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtbegin.o -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0 -LC:/w64devkit/bin/../lib/gcc -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib -LC:/w64devkit/bin/../../w64devkit/lib/../lib -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../.. -LC:/w64devkit/bin/../../w64devkit/lib -v --whole-archive CMakeFiles\\cmTC_5f936.dir/objects.a --no-whole-archive --out-implib libcmTC_5f936.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtend.o]
+        ignore line: [C:\\w64devkit\\bin/ld.exe --sysroot=C:/w64devkit/bin/../../w64devkit -m i386pep -Bdynamic -o cmTC_cc512.exe C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib/crt2.o C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtbegin.o -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0 -LC:/w64devkit/bin/../lib/gcc -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib -LC:/w64devkit/bin/../../w64devkit/lib/../lib -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../.. -LC:/w64devkit/bin/../../w64devkit/lib -v --whole-archive CMakeFiles\\cmTC_cc512.dir/objects.a --no-whole-archive --out-implib libcmTC_cc512.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtend.o]
         linker tool for 'C': C:/w64devkit/bin/ld.exe
         remove lib [msvcrt]
         remove lib [msvcrt]
@@ -308,8 +330,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-j7ibkl"
-      binary: "C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-j7ibkl"
+      source: "C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-8h0cz6"
+      binary: "C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-8h0cz6"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: "-g"
@@ -319,13 +341,13 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-j7ibkl'
+        Change Dir: 'C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-8h0cz6'
         
-        Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/w64devkit/bin/mingw32-make.exe -f Makefile cmTC_45436/fast
-        make  -f CMakeFiles\\cmTC_45436.dir\\build.make CMakeFiles/cmTC_45436.dir/build
-        make[1]: Entering directory 'C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-j7ibkl'
-        Building CXX object CMakeFiles/cmTC_45436.dir/CMakeCXXCompilerABI.cpp.obj
-        C:\\w64devkit\\bin\\c++.exe   -v -o CMakeFiles\\cmTC_45436.dir\\CMakeCXXCompilerABI.cpp.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
+        Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/w64devkit/bin/mingw32-make.exe -f Makefile cmTC_40201/fast
+        make  -f CMakeFiles\\cmTC_40201.dir\\build.make CMakeFiles/cmTC_40201.dir/build
+        make[1]: Entering directory 'C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-8h0cz6'
+        Building CXX object CMakeFiles/cmTC_40201.dir/CMakeCXXCompilerABI.cpp.obj
+        C:\\w64devkit\\bin\\c++.exe   -v -o CMakeFiles\\cmTC_40201.dir\\CMakeCXXCompilerABI.cpp.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
         Using built-in specs.
         COLLECT_GCC=c++
         Target: x86_64-w64-mingw32
@@ -333,8 +355,8 @@ events:
         Thread model: posix
         Supported LTO compression algorithms: zlib
         gcc version 15.1.0 (GCC) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_45436.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_45436.dir\\'
-         C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/cc1plus.exe -quiet -v -iprefix C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/ -isysroot C:/w64devkit/bin/../../w64devkit -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles\\cmTC_45436.dir\\ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o C:\\Users\\pc\\AppData\\Local\\Temp\\cch2WtZL.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_40201.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_40201.dir\\'
+         C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/cc1plus.exe -quiet -v -iprefix C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/ -isysroot C:/w64devkit/bin/../../w64devkit -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles\\cmTC_40201.dir\\ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o C:\\Users\\pc\\AppData\\Local\\Temp\\cckJpxGM.s
         GNU C++17 (GCC) version 15.1.0 (x86_64-w64-mingw32)
         	compiled by GNU C version 15.1.0, GMP version 6.3.0, MPFR version 4.2.2, MPC version 1.3.1, isl version none
         GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
@@ -356,17 +378,17 @@ events:
          C:/w64devkit/bin/../../w64devkit/include
         End of search list.
         Compiler executable checksum: 84c224e7c2029a896d3792e27a673352
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_45436.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_45436.dir\\'
-         as -v -o CMakeFiles\\cmTC_45436.dir\\CMakeCXXCompilerABI.cpp.obj C:\\Users\\pc\\AppData\\Local\\Temp\\cch2WtZL.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_40201.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_40201.dir\\'
+         as -v -o CMakeFiles\\cmTC_40201.dir\\CMakeCXXCompilerABI.cpp.obj C:\\Users\\pc\\AppData\\Local\\Temp\\cckJpxGM.s
         GNU assembler version 2.44 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.44
         COMPILER_PATH=C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/;C:/w64devkit/bin/../libexec/gcc/
         LIBRARY_PATH=C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/;C:/w64devkit/bin/../lib/gcc/;C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib/;C:/w64devkit/bin/../../w64devkit/lib/../lib/;C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../;C:/w64devkit/bin/../../w64devkit/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_45436.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_45436.dir\\CMakeCXXCompilerABI.cpp.'
-        Linking CXX executable cmTC_45436.exe
-        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_45436.dir\\link.txt --verbose=1
-        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E rm -f CMakeFiles\\cmTC_45436.dir/objects.a
-        C:\\w64devkit\\bin\\ar.exe qc CMakeFiles\\cmTC_45436.dir/objects.a @CMakeFiles\\cmTC_45436.dir\\objects1.rsp
-        C:\\w64devkit\\bin\\c++.exe  -v -Wl,-v -Wl,--whole-archive CMakeFiles\\cmTC_45436.dir/objects.a -Wl,--no-whole-archive -o cmTC_45436.exe -Wl,--out-implib,libcmTC_45436.dll.a -Wl,--major-image-version,0,--minor-image-version,0
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_40201.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_40201.dir\\CMakeCXXCompilerABI.cpp.'
+        Linking CXX executable cmTC_40201.exe
+        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_40201.dir\\link.txt --verbose=1
+        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E rm -f CMakeFiles\\cmTC_40201.dir/objects.a
+        C:\\w64devkit\\bin\\ar.exe qc CMakeFiles\\cmTC_40201.dir/objects.a @CMakeFiles\\cmTC_40201.dir\\objects1.rsp
+        C:\\w64devkit\\bin\\c++.exe  -v -Wl,-v -Wl,--whole-archive CMakeFiles\\cmTC_40201.dir/objects.a -Wl,--no-whole-archive -o cmTC_40201.exe -Wl,--out-implib,libcmTC_40201.dll.a -Wl,--major-image-version,0,--minor-image-version,0
         Using built-in specs.
         COLLECT_GCC=c++
         COLLECT_LTO_WRAPPER=C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/lto-wrapper.exe
@@ -377,13 +399,13 @@ events:
         gcc version 15.1.0 (GCC) 
         COMPILER_PATH=C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/;C:/w64devkit/bin/../libexec/gcc/
         LIBRARY_PATH=C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/;C:/w64devkit/bin/../lib/gcc/;C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib/;C:/w64devkit/bin/../../w64devkit/lib/../lib/;C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../;C:/w64devkit/bin/../../w64devkit/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_45436.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_45436.'
-         C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/collect2.exe --sysroot=C:/w64devkit/bin/../../w64devkit -m i386pep -Bdynamic -o cmTC_45436.exe C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib/crt2.o C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtbegin.o -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0 -LC:/w64devkit/bin/../lib/gcc -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib -LC:/w64devkit/bin/../../w64devkit/lib/../lib -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../.. -LC:/w64devkit/bin/../../w64devkit/lib -v --whole-archive CMakeFiles\\cmTC_45436.dir/objects.a --no-whole-archive --out-implib libcmTC_45436.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtend.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_40201.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_40201.'
+         C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/collect2.exe --sysroot=C:/w64devkit/bin/../../w64devkit -m i386pep -Bdynamic -o cmTC_40201.exe C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib/crt2.o C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtbegin.o -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0 -LC:/w64devkit/bin/../lib/gcc -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib -LC:/w64devkit/bin/../../w64devkit/lib/../lib -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../.. -LC:/w64devkit/bin/../../w64devkit/lib -v --whole-archive CMakeFiles\\cmTC_40201.dir/objects.a --no-whole-archive --out-implib libcmTC_40201.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtend.o
         collect2 version 15.1.0
-        C:\\w64devkit\\bin/ld.exe --sysroot=C:/w64devkit/bin/../../w64devkit -m i386pep -Bdynamic -o cmTC_45436.exe C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib/crt2.o C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtbegin.o -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0 -LC:/w64devkit/bin/../lib/gcc -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib -LC:/w64devkit/bin/../../w64devkit/lib/../lib -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../.. -LC:/w64devkit/bin/../../w64devkit/lib -v --whole-archive CMakeFiles\\cmTC_45436.dir/objects.a --no-whole-archive --out-implib libcmTC_45436.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtend.o
+        C:\\w64devkit\\bin/ld.exe --sysroot=C:/w64devkit/bin/../../w64devkit -m i386pep -Bdynamic -o cmTC_40201.exe C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib/crt2.o C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtbegin.o -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0 -LC:/w64devkit/bin/../lib/gcc -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib -LC:/w64devkit/bin/../../w64devkit/lib/../lib -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../.. -LC:/w64devkit/bin/../../w64devkit/lib -v --whole-archive CMakeFiles\\cmTC_40201.dir/objects.a --no-whole-archive --out-implib libcmTC_40201.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtend.o
         GNU ld (GNU Binutils) 2.44
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_45436.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_45436.'
-        make[1]: Leaving directory 'C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-j7ibkl'
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_40201.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_40201.'
+        make[1]: Leaving directory 'C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-8h0cz6'
         
       exitCode: 0
   -
@@ -422,13 +444,13 @@ events:
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: 'C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-j7ibkl']
+        ignore line: [Change Dir: 'C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-8h0cz6']
         ignore line: []
-        ignore line: [Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/w64devkit/bin/mingw32-make.exe -f Makefile cmTC_45436/fast]
-        ignore line: [make  -f CMakeFiles\\cmTC_45436.dir\\build.make CMakeFiles/cmTC_45436.dir/build]
-        ignore line: [make[1]: Entering directory 'C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-j7ibkl']
-        ignore line: [Building CXX object CMakeFiles/cmTC_45436.dir/CMakeCXXCompilerABI.cpp.obj]
-        ignore line: [C:\\w64devkit\\bin\\c++.exe   -v -o CMakeFiles\\cmTC_45436.dir\\CMakeCXXCompilerABI.cpp.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"]
+        ignore line: [Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/w64devkit/bin/mingw32-make.exe -f Makefile cmTC_40201/fast]
+        ignore line: [make  -f CMakeFiles\\cmTC_40201.dir\\build.make CMakeFiles/cmTC_40201.dir/build]
+        ignore line: [make[1]: Entering directory 'C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/CMakeScratch/TryCompile-8h0cz6']
+        ignore line: [Building CXX object CMakeFiles/cmTC_40201.dir/CMakeCXXCompilerABI.cpp.obj]
+        ignore line: [C:\\w64devkit\\bin\\c++.exe   -v -o CMakeFiles\\cmTC_40201.dir\\CMakeCXXCompilerABI.cpp.obj -c "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=c++]
         ignore line: [Target: x86_64-w64-mingw32]
@@ -436,8 +458,8 @@ events:
         ignore line: [Thread model: posix]
         ignore line: [Supported LTO compression algorithms: zlib]
         ignore line: [gcc version 15.1.0 (GCC) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_45436.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_45436.dir\\']
-        ignore line: [ C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/cc1plus.exe -quiet -v -iprefix C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/ -isysroot C:/w64devkit/bin/../../w64devkit -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles\\cmTC_45436.dir\\ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o C:\\Users\\pc\\AppData\\Local\\Temp\\cch2WtZL.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_40201.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_40201.dir\\']
+        ignore line: [ C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/cc1plus.exe -quiet -v -iprefix C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/ -isysroot C:/w64devkit/bin/../../w64devkit -D_REENTRANT C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles\\cmTC_40201.dir\\ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o C:\\Users\\pc\\AppData\\Local\\Temp\\cckJpxGM.s]
         ignore line: [GNU C++17 (GCC) version 15.1.0 (x86_64-w64-mingw32)]
         ignore line: [	compiled by GNU C version 15.1.0  GMP version 6.3.0  MPFR version 4.2.2  MPC version 1.3.1  isl version none]
         ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
@@ -459,8 +481,8 @@ events:
         ignore line: [ C:/w64devkit/bin/../../w64devkit/include]
         ignore line: [End of search list.]
         ignore line: [Compiler executable checksum: 84c224e7c2029a896d3792e27a673352]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_45436.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_45436.dir\\']
-        ignore line: [ as -v -o CMakeFiles\\cmTC_45436.dir\\CMakeCXXCompilerABI.cpp.obj C:\\Users\\pc\\AppData\\Local\\Temp\\cch2WtZL.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_40201.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_40201.dir\\']
+        ignore line: [ as -v -o CMakeFiles\\cmTC_40201.dir\\CMakeCXXCompilerABI.cpp.obj C:\\Users\\pc\\AppData\\Local\\Temp\\cckJpxGM.s]
         ignore line: [GNU assembler version 2.44 (x86_64-w64-mingw32) using BFD version (GNU Binutils) 2.44]
         ignore line: [COMPILER_PATH=C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/]
         ignore line: [C:/w64devkit/bin/../libexec/gcc/]
@@ -470,12 +492,12 @@ events:
         ignore line: [C:/w64devkit/bin/../../w64devkit/lib/../lib/]
         ignore line: [C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../]
         ignore line: [C:/w64devkit/bin/../../w64devkit/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_45436.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_45436.dir\\CMakeCXXCompilerABI.cpp.']
-        ignore line: [Linking CXX executable cmTC_45436.exe]
-        ignore line: ["C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_45436.dir\\link.txt --verbose=1]
-        ignore line: ["C:\\Program Files\\CMake\\bin\\cmake.exe" -E rm -f CMakeFiles\\cmTC_45436.dir/objects.a]
-        ignore line: [C:\\w64devkit\\bin\\ar.exe qc CMakeFiles\\cmTC_45436.dir/objects.a @CMakeFiles\\cmTC_45436.dir\\objects1.rsp]
-        ignore line: [C:\\w64devkit\\bin\\c++.exe  -v -Wl -v -Wl --whole-archive CMakeFiles\\cmTC_45436.dir/objects.a -Wl --no-whole-archive -o cmTC_45436.exe -Wl --out-implib libcmTC_45436.dll.a -Wl --major-image-version 0 --minor-image-version 0]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles\\cmTC_40201.dir\\CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles\\cmTC_40201.dir\\CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX executable cmTC_40201.exe]
+        ignore line: ["C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_40201.dir\\link.txt --verbose=1]
+        ignore line: ["C:\\Program Files\\CMake\\bin\\cmake.exe" -E rm -f CMakeFiles\\cmTC_40201.dir/objects.a]
+        ignore line: [C:\\w64devkit\\bin\\ar.exe qc CMakeFiles\\cmTC_40201.dir/objects.a @CMakeFiles\\cmTC_40201.dir\\objects1.rsp]
+        ignore line: [C:\\w64devkit\\bin\\c++.exe  -v -Wl -v -Wl --whole-archive CMakeFiles\\cmTC_40201.dir/objects.a -Wl --no-whole-archive -o cmTC_40201.exe -Wl --out-implib libcmTC_40201.dll.a -Wl --major-image-version 0 --minor-image-version 0]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=c++]
         ignore line: [COLLECT_LTO_WRAPPER=C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/lto-wrapper.exe]
@@ -492,15 +514,15 @@ events:
         ignore line: [C:/w64devkit/bin/../../w64devkit/lib/../lib/]
         ignore line: [C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../]
         ignore line: [C:/w64devkit/bin/../../w64devkit/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_45436.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_45436.']
-        link line: [ C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/collect2.exe --sysroot=C:/w64devkit/bin/../../w64devkit -m i386pep -Bdynamic -o cmTC_45436.exe C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib/crt2.o C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtbegin.o -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0 -LC:/w64devkit/bin/../lib/gcc -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib -LC:/w64devkit/bin/../../w64devkit/lib/../lib -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../.. -LC:/w64devkit/bin/../../w64devkit/lib -v --whole-archive CMakeFiles\\cmTC_45436.dir/objects.a --no-whole-archive --out-implib libcmTC_45436.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtend.o]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_40201.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_40201.']
+        link line: [ C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/collect2.exe --sysroot=C:/w64devkit/bin/../../w64devkit -m i386pep -Bdynamic -o cmTC_40201.exe C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib/crt2.o C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtbegin.o -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0 -LC:/w64devkit/bin/../lib/gcc -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib -LC:/w64devkit/bin/../../w64devkit/lib/../lib -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../.. -LC:/w64devkit/bin/../../w64devkit/lib -v --whole-archive CMakeFiles\\cmTC_40201.dir/objects.a --no-whole-archive --out-implib libcmTC_40201.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtend.o]
           arg [C:/w64devkit/bin/../libexec/gcc/x86_64-w64-mingw32/15.1.0/collect2.exe] ==> ignore
           arg [--sysroot=C:/w64devkit/bin/../../w64devkit] ==> ignore
           arg [-m] ==> ignore
           arg [i386pep] ==> ignore
           arg [-Bdynamic] ==> search dynamic
           arg [-o] ==> ignore
-          arg [cmTC_45436.exe] ==> ignore
+          arg [cmTC_40201.exe] ==> ignore
           arg [C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib/crt2.o] ==> obj [C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib/crt2.o]
           arg [C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtbegin.o] ==> obj [C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtbegin.o]
           arg [-LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0] ==> dir [C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0]
@@ -511,10 +533,10 @@ events:
           arg [-LC:/w64devkit/bin/../../w64devkit/lib] ==> dir [C:/w64devkit/bin/../../w64devkit/lib]
           arg [-v] ==> ignore
           arg [--whole-archive] ==> ignore
-          arg [CMakeFiles\\cmTC_45436.dir/objects.a] ==> ignore
+          arg [CMakeFiles\\cmTC_40201.dir/objects.a] ==> ignore
           arg [--no-whole-archive] ==> ignore
           arg [--out-implib] ==> ignore
-          arg [libcmTC_45436.dll.a] ==> ignore
+          arg [libcmTC_40201.dll.a] ==> ignore
           arg [--major-image-version] ==> ignore
           arg [0] ==> ignore
           arg [--minor-image-version] ==> ignore
@@ -537,7 +559,7 @@ events:
           arg [-lkernel32] ==> lib [kernel32]
           arg [C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtend.o] ==> obj [C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtend.o]
         ignore line: [collect2 version 15.1.0]
-        ignore line: [C:\\w64devkit\\bin/ld.exe --sysroot=C:/w64devkit/bin/../../w64devkit -m i386pep -Bdynamic -o cmTC_45436.exe C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib/crt2.o C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtbegin.o -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0 -LC:/w64devkit/bin/../lib/gcc -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib -LC:/w64devkit/bin/../../w64devkit/lib/../lib -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../.. -LC:/w64devkit/bin/../../w64devkit/lib -v --whole-archive CMakeFiles\\cmTC_45436.dir/objects.a --no-whole-archive --out-implib libcmTC_45436.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtend.o]
+        ignore line: [C:\\w64devkit\\bin/ld.exe --sysroot=C:/w64devkit/bin/../../w64devkit -m i386pep -Bdynamic -o cmTC_40201.exe C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib/crt2.o C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtbegin.o -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0 -LC:/w64devkit/bin/../lib/gcc -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../../../lib -LC:/w64devkit/bin/../../w64devkit/lib/../lib -LC:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/../../.. -LC:/w64devkit/bin/../../w64devkit/lib -v --whole-archive CMakeFiles\\cmTC_40201.dir/objects.a --no-whole-archive --out-implib libcmTC_40201.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmingwex -lmsvcrt -lkernel32 C:/w64devkit/bin/../lib/gcc/x86_64-w64-mingw32/15.1.0/crtend.o]
         linker tool for 'CXX': C:/w64devkit/bin/ld.exe
         remove lib [msvcrt]
         remove lib [msvcrt]

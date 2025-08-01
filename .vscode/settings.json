@@ -60,6 +60,9 @@
         "thread": "cpp",
         "cinttypes": "cpp",
         "typeinfo": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "print": "cpp",
+        "condition_variable": "cpp",
+        "mutex": "cpp"
     }
 }

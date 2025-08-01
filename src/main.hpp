@@ -1,7 +1,6 @@
 #pragma once
 #define SDL_MAIN_HANDLED
 
-
 #include <iostream>
 #include <cstring>
 #include <glad/glad.h>

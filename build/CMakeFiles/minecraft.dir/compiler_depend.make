@@ -612,6 +612,7 @@ CMakeFiles/minecraft.dir/src/main.cpp.obj: C:/Users/pc/Desktop/Minecraft\ OpenGL
   C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/bits/requires_hosted.h \
   C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/bits/sstream.tcc \
   C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/bits/std_abs.h \
+  C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/bits/std_mutex.h \
   C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/bits/std_thread.h \
   C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/bits/stl_algobase.h \
   C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/bits/stl_bvector.h \
@@ -630,6 +631,7 @@ CMakeFiles/minecraft.dir/src/main.cpp.obj: C:/Users/pc/Desktop/Minecraft\ OpenGL
   C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/bits/streambuf_iterator.h \
   C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/bits/stringfwd.h \
   C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/bits/this_thread_sleep.h \
+  C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/bits/unique_lock.h \
   C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/bits/unique_ptr.h \
   C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/bits/uses_allocator.h \
   C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/bits/utility.h \
@@ -669,6 +671,7 @@ CMakeFiles/minecraft.dir/src/main.cpp.obj: C:/Users/pc/Desktop/Minecraft\ OpenGL
   C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/limits \
   C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/map \
   C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/math.h \
+  C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/mutex \
   C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/new \
   C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/ostream \
   C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/ratio \
@@ -765,8 +768,7 @@ CMakeFiles/minecraft.dir/src/main.cpp.obj: C:/Users/pc/Desktop/Minecraft\ OpenGL
   C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/xsavesintrin.h \
   C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/xtestintrin.h \
   C:/Users/pc/Desktop/Minecraft\ OpenGL/src/Shader/Shader.cpp \
-  C:/Users/pc/Desktop/Minecraft\ OpenGL/src/main.hpp \
-  C:/Users/pc/Desktop/Minecraft\ OpenGL/src/utils/utils.cpp
+  C:/Users/pc/Desktop/Minecraft\ OpenGL/src/main.hpp
 
 
 C:/Users/pc/Desktop/Minecraft\ OpenGL/includes/SDL2/SDL_log.h:
@@ -1263,6 +1265,8 @@ C:/w64devkit/include/timezoneapi.h:
 
 C:/w64devkit/include/tvout.h:
 
+C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/bits/std_mutex.h:
+
 C:/w64devkit/include/unknwnbase.h:
 
 C:/w64devkit/include/urlmon.h:
@@ -1657,6 +1661,8 @@ C:/Users/pc/Desktop/Minecraft\ OpenGL/includes/glm/integer.hpp:
 
 C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/x86_64-w64-mingw32/bits/ctype_base.h:
 
+C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/bits/unique_lock.h:
+
 C:/Users/pc/Desktop/Minecraft\ OpenGL/includes/SDL2/SDL_platform.h:
 
 C:/Users/pc/Desktop/Minecraft\ OpenGL/includes/SDL2/SDL_quit.h:
@@ -1949,6 +1955,8 @@ C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/map:
 
 C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/math.h:
 
+C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/mutex:
+
 C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/new:
 
 C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/ostream:
@@ -1986,5 +1994,3 @@ C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/x86_64-w64-mingw32/bi
 C:/w64devkit/lib/gcc/x86_64-w64-mingw32/15.1.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h:
 
 C:/Users/pc/Desktop/Minecraft\ OpenGL/src/Shader/Shader.cpp:
-
-C:/Users/pc/Desktop/Minecraft\ OpenGL/src/utils/utils.cpp:

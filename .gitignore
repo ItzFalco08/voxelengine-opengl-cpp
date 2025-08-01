@@ -1,1 +1,7 @@
-./build/*
+build/
+.vs/
+.vscode/
+test.cpp
+test.exe
+test
+Makefile

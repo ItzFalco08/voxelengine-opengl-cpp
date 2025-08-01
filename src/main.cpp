@@ -1,9 +1,13 @@
 #include "main.hpp"
+
+// basic stuff
 #include <map>
 #include <vector>
+
+// multithreading
 #include <atomic>
 #include <thread>
-
+#include <mutex>
 
 // this code runs background musics
 bool playBgm()
@@ -60,12 +64,12 @@ const int CHUNK_HEIGHT = 32; // 16 until we add caves via 3D noise
 int renderDistance = 5;
 
 float noise_scale = 0.05f;
+static std::mutex coutMutex;
 int maxHeight = 20;
 
 // Chunk Class
 // this si the core code, it generates the chunk and shows in the screen
-class Chunk
-{
+class Chunk {
 private:
     int initialX;
     int initialZ;
@@ -78,9 +82,10 @@ private:
     std::atomic<bool> verticesLoaded{false};
     bool verticesUploaded = false;
 
-    std::vector<float> vertices;
+    std::vector<float> vertices; // use array[CHUNKWIDTH*CHUNKWIDTH*CHUNKHEIGHT*36] for better memory management
 
     unsigned int VAO, VBO;
+
 
     enum FaceDirection
     {
@@ -138,27 +143,18 @@ private:
 
     void genLeaves(int x, int y, int z)
     {
+        if (y >= CHUNK_HEIGHT) return;
 
-        // loop x,z to add leaves
-        for (int leafX = (x - 1); leafX <= (x + 1); leafX++)
-        {
-            for (int leafZ = (z - 1); leafZ <= (z + 1); leafZ++)
-            {
-                // 2 layers
-                for (int leafY = y; leafY <= (y + 1); leafY++)
-                {
-                    // bounds check
-                    if (leafX >= 0 && leafX < CHUNK_WIDTH &&
-                        leafY >= 0 && leafY < CHUNK_HEIGHT &&
-                        leafZ >= 0 && leafZ < CHUNK_WIDTH)
-                    {
+        for (int leafX = (x - 2); leafX <= (x + 2); leafX++) {
+            if (leafX < 0 || leafX >= CHUNK_WIDTH) continue;
+            blocks[leafX][y][z] = LEAVES;
 
-                        blocks[leafX][leafY][leafZ] = LEAVES;
-                    }
-                }
-            }
+            // std::lock_guard<std::mutex> lock(coutMutex);
+            // std::cout << "Set leaf at: " << leafX << ", " << y << ", " << z << ", x: " << x << std::endl;
+            // std::cout << "existance in blocks: " << (blocks[leafX][y][z] ? "true" : "false") << std::endl;
         }
     }
+
 
     void genTree(int x, int y, int z)
     {
@@ -173,16 +169,15 @@ private:
         {
             int targetY = y + treeY;
 
+            if (targetY < CHUNK_HEIGHT)
+            {
+                blocks[localX][targetY][localZ] = LOG;
+            }
+
             if (treeY == trunkHeight)
             {
                 // gen leaves at x,y,z
                 genLeaves(localX, targetY, localZ);
-            }
-
-            // replace the middle of leaves by one block with log
-            if (targetY >= 0 && targetY < CHUNK_HEIGHT)
-            {
-                blocks[localX][targetY][localZ] = LOG;
             }
         }
     }
@@ -268,37 +263,44 @@ private:
         return false;
     }
 
+    // x, y, z, u, v, face, type
+    float localPos[6][6][3] = {
+        {{1.0f, 1.0f, 0.0f}, {0.0f, 1.0f, 0.0f}, {0.0f, 1.0f, 1.0f}, {0.0f, 1.0f, 1.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 1.0f, 0.0f}}, // TOP
+        {{1.0f, 0.0f, 0.0f}, {1.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 0.0f}, {1.0f, 0.0f, 0.0f}}, // BOTTOM
+        {{1.0f, 1.0f, 1.0f}, {0.0f, 1.0f, 1.0f}, {0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 1.0f}, {1.0f, 0.0f, 1.0f}, {1.0f, 1.0f, 1.0f}}, // FRONT
+        {{0.0f, 1.0f, 0.0f}, {1.0f, 1.0f, 0.0f}, {1.0f, 0.0f, 0.0f}, {1.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {0.0f, 1.0f, 0.0f}}, // BACK
+        {{0.0f, 1.0f, 1.0f}, {0.0f, 1.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 1.0f}, {0.0f, 1.0f, 1.0f}}, // LEFT
+        {{1.0f, 1.0f, 0.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 0.0f, 1.0f}, {1.0f, 0.0f, 1.0f}, {1.0f, 0.0f, 0.0f}, {1.0f, 1.0f, 0.0f}}  // RIGHT
+    };
+
+    // for vertex in each face
+    float localUv[6][2] = {
+        {1.0f, 1.0f},
+        {0.0f, 1.0f},
+        {0.0f, 0.0f},
+        {0.0f, 0.0f},
+        {1.0f, 0.0f},
+        {1.0f, 1.0f}
+    };
+
     void addFace(FaceDirection face, int x, int y, int z, int type)
     {
+        // Debug: Print when adding leaf faces
+        // if (type == LEAVES) {
+        //     std::lock_guard<std::mutex> lock(coutMutex);
+        //     std::cout << "Adding leaf face: " << x << ", " << y << ", " << z << ", face: " << face << std::endl;
+        // }
+        
         // add vace vertex to verticies vector
-
-        // x, y, z, u, v, face, type
-        float localPos[6][6][3] = {
-            {{1.0f, 1.0f, 0.0f}, {0.0f, 1.0f, 0.0f}, {0.0f, 1.0f, 1.0f}, {0.0f, 1.0f, 1.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 1.0f, 0.0f}}, // TOP
-            {{1.0f, 0.0f, 0.0f}, {1.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 0.0f}, {1.0f, 0.0f, 0.0f}}, // BOTTOM
-            {{1.0f, 1.0f, 1.0f}, {0.0f, 1.0f, 1.0f}, {0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 1.0f}, {1.0f, 0.0f, 1.0f}, {1.0f, 1.0f, 1.0f}}, // FRONT
-            {{0.0f, 1.0f, 0.0f}, {1.0f, 1.0f, 0.0f}, {1.0f, 0.0f, 0.0f}, {1.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {0.0f, 1.0f, 0.0f}}, // BACK
-            {{0.0f, 1.0f, 1.0f}, {0.0f, 1.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 1.0f}, {0.0f, 1.0f, 1.0f}}, // LEFT
-            {{1.0f, 1.0f, 0.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 0.0f, 1.0f}, {1.0f, 0.0f, 1.0f}, {1.0f, 0.0f, 0.0f}, {1.0f, 1.0f, 0.0f}}  // RIGHT
-        };
-
-        // for vertex in each face
-        float localUv[6][2] = {
-            {1.0f, 1.0f},
-            {0.0f, 1.0f},
-            {0.0f, 0.0f},
-            {0.0f, 0.0f},
-            {1.0f, 0.0f},
-            {1.0f, 1.0f}};
-
         for (int vertex = 0; vertex < 6; vertex++)
         {
-            float *pos = localPos[face][vertex];
-            float *uv = localUv[vertex];
+            float* pos = localPos[face][vertex];
+            float* uv = localUv[vertex];
 
-            vertices.push_back(pos[0] + x);
+            // Convert local coordinates to world coordinates
+            vertices.push_back(pos[0] + x + initialX);
             vertices.push_back(pos[1] + y);
-            vertices.push_back(pos[2] + z);
+            vertices.push_back(pos[2] + z + initialZ);
 
             vertices.push_back(uv[0]);
             vertices.push_back(uv[1]);
@@ -311,7 +313,6 @@ private:
     void buildMesh()
     {
         vertices.clear();
-        // int logCount = 0;
 
         for (int x = 0; x < CHUNK_WIDTH; x++)
         {
@@ -320,23 +321,22 @@ private:
                 for (int z = 0; z < CHUNK_WIDTH; z++)
                 {
                     int type = blocks[x][y][z];
-                    // if (type == LOG) logCount++;
                     if (type == AIR)
                         continue;
 
                     // add each exposed face if block is not air
                     if (isAir(x, y + 1, z))
-                        addFace(TOP, x + initialX, y, z + initialZ, type); // add top face
+                        addFace(TOP, x, y, z, type); // add top face
                     if (isAir(x, y - 1, z))
-                        addFace(BOTTOM, x + initialX, y, z + initialZ, type); // add bottom face
+                        addFace(BOTTOM, x, y, z, type); // add bottom face
                     if (isAir(x + 1, y, z))
-                        addFace(RIGHT, x + initialX, y, z + initialZ, type); // add right face
+                        addFace(RIGHT, x, y, z, type); // add right face
                     if (isAir(x - 1, y, z))
-                        addFace(LEFT, x + initialX, y, z + initialZ, type); // add left face
+                        addFace(LEFT, x, y, z, type); // add left face
                     if (isAir(x, y, z + 1))
-                        addFace(FRONT, x + initialX, y, z + initialZ, type); // add front face
+                        addFace(FRONT, x, y, z, type); // add front face
                     if (isAir(x, y, z - 1))
-                        addFace(BACK, x + initialX, y, z + initialZ, type); // add back face
+                        addFace(BACK, x, y, z, type); // add back face
                 }
             }
         }
@@ -524,13 +524,15 @@ void initialization(GLFWwindow *window)
 
     glfwSetCursorPosCallback(window, mouse_callback);
 
+    // enables alpha to work (currently not working even with this code)
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
     // set the texture to fragment shader
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, textureId1);
     shader->setInt("curTexture", 0);
     glBindVertexArray(cubeVAO);
-
-    // set blocktype to grass (by default)
 
     playBgm();
     initNuklear(window);

@@ -1,8 +1,8 @@
 #include <sstream>
 #include <iostream>
 #include <fstream>
+#include <glad/glad.h> // Add this line to include OpenGL functions
 #define print(x) std::cout << x << std::endl
-
 
 class Shader {
 public:

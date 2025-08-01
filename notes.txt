@@ -1,0 +1,14 @@
+BUGS:
+
+- the alpha is not working
+- the leaves issue
+
+TODO:
+
+1. add collision and gravity
+2. add raycast block break (i guess the raycast will return the cordinates of collision, then we remove the block from its cordinates)
+3. add block place
+4. add grass
+5. add water
+6. add a menu gui
+7. make a site and launch
