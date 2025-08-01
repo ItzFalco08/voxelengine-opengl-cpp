@@ -1,3 +1,0 @@
-C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/minecraft.dir
-C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/edit_cache.dir
-C:/Users/pc/Desktop/Minecraft OpenGL/build/CMakeFiles/rebuild_cache.dir
